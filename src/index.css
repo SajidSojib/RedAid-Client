@@ -5,6 +5,44 @@
 @plugin "daisyui/theme" {
   name: "light";
   default:true;
-  --color-primary: #6e56cf;
+  /* --color-primary: #fb2c36;
+  --color-primary-content: #ffffff
+  --color-secondary: #f3f4f6;
+  --color-secondary-content: #4b5563
+  --color-accent: #d6e4f0;
+  --color-accent-content: #1e3a8a
+  --color-base: #e8ebed;
+  --color-base-content: #333333 */
   
+  --color-primary: #B91C1C;              /* Deep Red – main action color (blood, urgency) */
+  --color-primary-content: #ffffff;      /* White – text on primary */
+
+  --color-secondary: #FDE68A;            /* Soft Yellow – highlight/secondary sections */
+  --color-secondary-content: #1F2937;    /* Dark Gray – readable text on yellow */
+
+  --color-accent: #4ADE80;               /* Soft Green – success, positive states */
+  --color-accent-content: #1E3A8A;       /* Navy – readable text on green */
+
+  --color-neutral: #1F2937;              /* Dark Gray – sidebar or text */
+  --color-neutral-content: #F3F4F6;      /* Light Gray – text on dark */
+
+  --color-base-100: #ffffff;             /* Pure White – main background */
+  --color-base-200: #F9FAFB;             /* Very Light Gray – secondary background */
+  --color-base-300: #E5E7EB;             /* Light Gray – borders, dividers */
+  --color-base-content: #1F2937;         /* Dark Gray – main text */
+
+  --color-info: #3B82F6;                 /* Blue – info alerts or badges */
+  --color-success: #10B981;              /* Green – success messages */
+  --color-warning: #F59E0B;              /* Orange – warnings */
+  --color-error: #EF4444;                /* Red – errors */
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap');
+
+.inter-font{
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
