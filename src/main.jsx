@@ -7,8 +7,9 @@ import "aos/dist/aos.css";
 import { ToastContainer } from "react-toastify";
 import MainLayout from './Layouts/MainLayout';
 import Home from './Pages/Home/Home';
-import { A } from 'react-router/dist/development/routeModules-g5PTiDfO';
 import AuthProvider from './Firebase/AuthProvider';
+import Login from './Pages/Authentication/Login';
+import Register from './Pages/Authentication/Register';
 AOS.init();
 
 const router = createBrowserRouter([
@@ -20,6 +21,14 @@ const router = createBrowserRouter([
         index: true,
         Component: Home
       },
+      {
+        path: 'login',
+        Component: Login
+      },
+      {
+        path: 'register',
+        Component: Register
+      }
     ]
   },
 ]);
