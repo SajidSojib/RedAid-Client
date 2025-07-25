@@ -11,8 +11,16 @@ import {
 } from "react-icons/fi";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { Link, useLocation, useNavigate } from "react-router";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const axiosPublic = useAxiosPublic();
+  const { createUser, updateUserData } = useAuth();
   const {
     register,
     handleSubmit,
@@ -28,6 +36,7 @@ const Register = () => {
   const [upazilas, setUpazilas] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(true);
   const selectedDistrict = watch("district");
   const passwordValue = watch("password");
   // eslint-disable-next-line no-unused-vars
@@ -46,6 +55,7 @@ const Register = () => {
       setUpazilas(upazilaData);
     };
     loadLocations();
+    setLoading(false);
   }, []);
 
   const filteredUpazilas = upazilas.filter(
@@ -53,7 +63,7 @@ const Register = () => {
   );
 
   const onSubmit = async (data) => {
-    // Check password match
+    // 1. Validate password match
     if (data.password !== data.confirm_password) {
       setError("confirm_password", {
         type: "manual",
@@ -62,38 +72,83 @@ const Register = () => {
       return;
     }
 
-    // Upload avatar to imageBB
+    // 2. Upload avatar to imageBB
     const imageFile = data.avatar[0];
     const formImage = new FormData();
     formImage.append("image", imageFile);
-
     const imageBBKey = import.meta.env.VITE_IMAGEBB_KEY;
     const imageUploadUrl = `https://api.imgbb.com/1/upload?key=${imageBBKey}`;
 
+    let imageUrl = "";
     try {
       const res = await axios.post(imageUploadUrl, formImage);
-      const imageUrl = res.data.data.display_url;
-
-      const donorData = {
-        name: data.name,
-        email: data.email,
-        avatar: imageUrl,
-        bloodGroup: data.bloodGroup,
-        district: data.district,
-        upazila: data.upazila,
-        password: data.password,
-        status: "active",
-        createdAt: new Date().toISOString(),
-        lastLogin: new Date().toISOString(),
-      };
-
-      console.log("Donor Registered:", donorData);
-      reset();
+      imageUrl = res.data.data.display_url;
     } catch (error) {
-      toast.error("Image upload failed", error);
+      toast.error("Image upload failed!", error);
+      return;
     }
-    
+
+    // 3. Create Firebase user
+    try {
+      const user = await createUser(data.email, data.password);
+      if (user) {
+        await updateUserData(data.name, imageUrl);
+      }
+    } catch (err) {
+      if (err.code === "auth/email-already-in-use") {
+        toast.error("Email already in use! Please use another email or login.");
+      } else {
+        const reason =
+          err.message.split("[")[1]?.split("]")[0] || "Unknown error";
+        toast.error(`Missing password requirements: ${reason}`);
+      }
+      return;
+    }
+
+    // 4. Construct donor data
+    const donorData = {
+      name: data.name,
+      email: data.email,
+      avatar: imageUrl,
+      bloodGroup: data.bloodGroup,
+      district: data.district,
+      upazila: data.upazila,
+      status: "active",
+      role: "donor",
+      createdAt: new Date().toISOString(),
+      lastLogin: new Date().toISOString(),
+    };
+
+    // 5. Save to database
+    try {
+      const res = await axiosPublic.post("/users", donorData);
+      console.log("Saved to DB:", res.data);
+    } catch (err) {
+      toast.error("Failed to save donor data to DB.");
+      console.error(err);
+      return;
+    }
+
+    // 6. Final success message + redirect
+    Swal.fire({
+      icon: "success",
+      title: "Donor Registered Successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
+    reset();
+    navigate(location?.state || "/");
   };
+  
+
+  if (loading) {
+    return (
+      <div className='flex items-center justify-center h-screen'>
+        <span className="loading loading-dots loading-xl"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-base-100 rounded shadow">
@@ -255,6 +310,15 @@ const Register = () => {
           Register
         </button>
       </form>
+      <p className="text-center mt-4 text-sm">
+        Already have an account?{" "}
+        <Link
+          to="/login"
+          className="text-primary font-medium hover:underline"
+        >
+          Login
+        </Link>
+      </p>
     </div>
   );
 };

@@ -20,8 +20,8 @@
   --color-secondary: #FDE68A;            /* Soft Yellow – highlight/secondary sections */
   --color-secondary-content: #1F2937;    /* Dark Gray – readable text on yellow */
 
-  --color-accent: #4ADE80;               /* Soft Green – success, positive states */
-  --color-accent-content: #1E3A8A;       /* Navy – readable text on green */
+  --color-accent: #E0E7FF;               /* Soft blue –  */
+  --color-accent-content: #1E293B;       /* Navy – readable text on green */
 
   --color-neutral: #1F2937;              /* Dark Gray – sidebar or text */
   --color-neutral-content: #F3F4F6;      /* Light Gray – text on dark */
