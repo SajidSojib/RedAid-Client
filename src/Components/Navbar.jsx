@@ -85,8 +85,8 @@ const Navbar = () => {
         data-aos-once="true"
       >
         <NavLink
-          to={"/donation-requests"}
-          aria-label="Donation Requests"
+          to={"/donation-request"}
+          aria-label="Donation Request"
           title="Donation Requests"
           className={({ isActive }) =>
             isActive
@@ -94,7 +94,7 @@ const Navbar = () => {
               : "flex btn btn-ghost hover:border-primary hover:border-2 hover:bg-base-100 hover:text-primary items-center gap-1"
           }
         >
-          Donation Requests
+          Donation Request
         </NavLink>
       </li>
       <li
