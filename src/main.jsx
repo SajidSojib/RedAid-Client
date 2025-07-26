@@ -18,6 +18,7 @@ import {
 } from "@tanstack/react-query";
 import DashboardHome from './Pages/DashBoard/DashboardHome/DashboardHome';
 import CreateDonReq from './Pages/DashBoard/CreateDonReq/CreateDonReq';
+import EditDonation from './Pages/DashBoard/DashboardHome/EditDonation';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
         path: "create-donation-request",
         element: <CreateDonReq></CreateDonReq>
       },
+      {
+        path: 'edit-donation/:id',
+        element: <EditDonation></EditDonation>
+      }
     ],
   },
 ]);

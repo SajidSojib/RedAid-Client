@@ -1,10 +1,14 @@
 import React from 'react';
 import Welcome from './Welcome';
+import RecentDonations from './RecentDonations';
 
 const DashboardHome = () => {
 
     return (
-      <Welcome></Welcome>
+      <div>
+        <Welcome></Welcome>
+        <RecentDonations></RecentDonations>
+      </div>
     );
 };
 
