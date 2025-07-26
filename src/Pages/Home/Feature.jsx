@@ -65,7 +65,7 @@ export const Feature = () => {
       </div>
       <div className="grid gap-8 row-gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {features.map((feature) => (
-          <div key={feature.id} className="sm:text-center">
+          <div key={feature.id} className="sm:text-center border-2 border-base-300 hover:border-primary hover:shadow-lg hover:scale-105 p-2 rounded-xl transition transform">
             <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-accent sm:mx-auto sm:w-20 sm:h-20">
               {feature.icon}
             </div>
