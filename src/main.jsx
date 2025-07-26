@@ -12,11 +12,12 @@ import Login from './Pages/Authentication/Login';
 import Register from './Pages/Authentication/Register';
 import PrivateRoute from './Routes/PrivateRoute';
 import DashboardLayout from './Layouts/DashboardLayout';
-import DashHome from './Pages/DashBoard/DashHome';
 import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import DashboardHome from './Pages/DashBoard/DashboardHome/DashboardHome';
+import CreateDonReq from './Pages/DashBoard/CreateDonReq/CreateDonReq';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -27,28 +28,36 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home
+        Component: Home,
       },
       {
-        path: 'login',
-        Component: Login
+        path: "login",
+        Component: Login,
       },
       {
-        path: 'register',
-        Component: Register
-      }
-    ]
+        path: "register",
+        Component: Register,
+      },
+    ],
   },
   {
-    path: '/dashboard',
-    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
-        index: true,
-        Component: DashHome
-      }
-    ]
-  }
+        path: "home",
+        Component: DashboardHome,
+      },
+      {
+        path: "create-donation-request",
+        element: <CreateDonReq></CreateDonReq>
+      },
+    ],
+  },
 ]);
 
 

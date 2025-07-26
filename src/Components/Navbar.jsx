@@ -211,7 +211,7 @@ const Navbar = () => {
                         ? "flex items-center gap-1 btn btn-primary"
                         : "flex btn btn-ghost hover:border-primary hover:border-2 hover:bg-base-100 hover:text-primary items-center gap-1"
                     }
-                    to="/dashboard"
+                    to="/dashboard/home"
                   >
                     Dashboard
                   </NavLink>
@@ -246,7 +246,7 @@ const Navbar = () => {
   return (
     <div className="px-4 border-3 border-primary rounded-4xl py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-base-100">
       <div className="relative flex items-center justify-between">
-        <div data-aos="fade-right">
+        <div data-aos="fade-right" className="text-2xl">
           <CompanyLogo></CompanyLogo>
         </div>
         <ul className="items-center hidden space-x-3 lg:flex">
@@ -260,7 +260,12 @@ const Navbar = () => {
             links
           )}
         </ul>
-        <ul data-aos="fade-left" className="items-center hidden space-x-3 lg:flex">{link2}</ul>
+        <ul
+          data-aos="fade-left"
+          className="items-center hidden space-x-3 lg:flex"
+        >
+          {link2}
+        </ul>
 
         {/* phone */}
         <div className="relative lg:hidden">
@@ -355,11 +360,21 @@ const Navbar = () => {
                   <ul className="pt-2 pb-4 space-y-1 text-sm ">{links}</ul>
                   <ul className="pt-4 pb-2 space-y-1 text-sm">
                     {user ? (
-                      <li onClick={handleLogOut}>
-                        <button className="flex btn btn-primary w-full">
-                          Log Out
-                        </button>
-                      </li>
+                      <div className="flex items-center justify-around">
+                        <li>
+                          <Link
+                            to={"/dashboard/home"}
+                            className="flex btn btn-outline text-base border-primary"
+                          >
+                            Dashboard
+                          </Link>
+                        </li>
+                        <li onClick={handleLogOut}>
+                          <button className="flex btn btn-primary w-full">
+                            Log Out
+                          </button>
+                        </li>
+                      </div>
                     ) : (
                       <div className="flex items-center justify-around">
                         <li>

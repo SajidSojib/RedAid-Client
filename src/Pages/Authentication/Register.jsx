@@ -34,9 +34,11 @@ const Register = () => {
 
   const [districts, setDistricts] = useState([]);
   const [upazilas, setUpazilas] = useState([]);
+  const [divisions, setDivisions] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(true);
+  const selectedDivision = watch("division");
   const selectedDistrict = watch("district");
   const passwordValue = watch("password");
   // eslint-disable-next-line no-unused-vars
@@ -45,12 +47,16 @@ const Register = () => {
   // Load district and upazila data
   useEffect(() => {
     const loadLocations = async () => {
+      const divisionData = await fetch("/division.json").then((res) =>
+        res.json()
+      );
       const districtData = await fetch("/district.json").then((res) =>
         res.json()
       );
       const upazilaData = await fetch("/upazila.json").then((res) =>
         res.json()
       );
+      setDivisions(divisionData);
       setDistricts(districtData);
       setUpazilas(upazilaData);
     };
@@ -58,6 +64,9 @@ const Register = () => {
     setLoading(false);
   }, []);
 
+  const filteredDistricts = districts.filter(
+    (d) => d.division_id === selectedDivision
+  );
   const filteredUpazilas = upazilas.filter(
     (u) => u.district_id === selectedDistrict
   );
@@ -106,17 +115,21 @@ const Register = () => {
     }
 
     // 4. Construct donor data
+    const divisionName = divisions.find((d) => d.id === data.division).name;
+    const districtName = districts.find((d) => d.id === data.district)?.name;
     const donorData = {
       name: data.name,
       email: data.email,
       avatar: imageUrl,
       bloodGroup: data.bloodGroup,
-      district: data.district,
+      division: divisionName,
+      district: districtName,
       upazila: data.upazila,
       status: "active",
       role: "donor",
-      createdAt: new Date().toISOString(),
-      lastLogin: new Date().toISOString(),
+      donationRequest: 0,
+      createdAt: new Date(),
+      lastLogin: new Date(),
     };
 
     // 5. Save to database
@@ -140,11 +153,10 @@ const Register = () => {
     reset();
     navigate(location?.state || "/");
   };
-  
 
   if (loading) {
     return (
-      <div className='flex items-center justify-center h-screen'>
+      <div className="flex items-center justify-center h-screen">
         <span className="loading loading-dots loading-xl"></span>
       </div>
     );
@@ -222,6 +234,25 @@ const Register = () => {
             <p className="text-error text-sm">{errors.bloodGroup.message}</p>
           )}
 
+          {/* division */}
+          <label className="input w-full input-bordered flex items-center gap-2">
+            <FiMapPin />
+            <select
+              {...register("division", { required: "Division is required" })}
+              className="grow bg-transparent"
+            >
+              <option value="">Select Division</option>
+              {divisions.map((division) => (
+                <option key={division.id} value={division.id}>
+                  {division.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          {errors.division && (
+            <p className="text-error text-sm">{errors.division.message}</p>
+          )}
+
           {/* District */}
           <label className="input w-full input-bordered flex items-center gap-2">
             <FiMapPin />
@@ -230,7 +261,7 @@ const Register = () => {
               className="grow bg-transparent"
             >
               <option value="">Select District</option>
-              {districts.map((district) => (
+              {filteredDistricts.map((district) => (
                 <option key={district.id} value={district.id}>
                   {district.name}
                 </option>

@@ -13,6 +13,7 @@ import {
 import { FaCheckCircle, FaClock, FaUserShield } from "react-icons/fa";
 import CompanyLogo from "../Components/CompanyLogo";
 import useRole from "../Hooks/useRole";
+import CompanyLogo2 from "../Components/CompanyLogo2";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
@@ -22,7 +23,7 @@ const DashboardLayout = () => {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="w-full  mt-3 flex items-center lg:hidden px-4 border-3 border-primary rounded-4xl py-2 mx-auto bg-base-100">
+          <div className="w-full flex-row-reverse justify-between mt-3 flex items-center lg:hidden px-4 border-3 border-primary rounded-4xl py-2 mx-auto bg-base-100">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-2"
@@ -45,11 +46,13 @@ const DashboardLayout = () => {
               </label>
             </div>
             <div className="mx-2">
-              <CompanyLogo></CompanyLogo>
+              <CompanyLogo2></CompanyLogo2>
             </div>
           </div>
           {/* Page content here */}
-          <Outlet></Outlet>
+          <div className="">
+            <Outlet></Outlet>
+          </div>
         </div>
         <div className="drawer-side">
           <label
@@ -59,39 +62,47 @@ const DashboardLayout = () => {
           ></label>
           <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
             {/* Sidebar content here */}
-            <CompanyLogo></CompanyLogo>
+            <div className="border-b-4 border-primary mb-5 mt-5 text-4xl">
+              <CompanyLogo></CompanyLogo>
+            </div>
             <li>
               <NavLink
-                to="/"
+                to="/dashboard/home"
                 className={({ isActive }) =>
-                  `flex items-center gap-2 px-4 py-2 rounded ${
-                    isActive ? "bg-primary text-black" : "hover:bg-base-200"
+                  `flex items-center gap-2 px-4 py-2 rounded text-base ${
+                    isActive
+                      ? "bg-primary text-white"
+                      : "hover:bg-base-200 hover:text-primary"
                   }`
                 }
               >
                 <FaHome />
-                Home
+                Dashboard Home
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/sendParcel"
+                to="/dashboard/create-donation-request"
                 className={({ isActive }) =>
-                  `flex items-center gap-2 px-4 py-2 rounded ${
-                    isActive ? "bg-primary text-black" : "hover:bg-base-200"
+                  `flex items-center gap-2 px-4 py-2 rounded text-base ${
+                    isActive
+                      ? "bg-primary text-white"
+                      : "hover:bg-base-200 hover:text-primary"
                   }`
                 }
               >
                 <FaBox />
-                Send a Parcel
+                Create Donation Request
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/dashboard/myParcels"
                 className={({ isActive }) =>
-                  `flex items-center gap-2 px-4 py-2 rounded ${
-                    isActive ? "bg-primary text-black" : "hover:bg-base-200"
+                  `flex items-center gap-2 px-4 py-2 rounded text-base ${
+                    isActive
+                      ? "bg-primary text-white"
+                      : "hover:bg-base-200 hover:text-primary"
                   }`
                 }
               >
