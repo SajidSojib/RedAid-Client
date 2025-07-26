@@ -191,7 +191,7 @@ const Navbar = () => {
           </li>
 
           {/* Dropdown Toggle Button */}
-          <li className="relative">
+          <li className="relative -ml-3">
             <details className="dropdown dropdown-end">
               <summary
                 onClick={() => setIsMenuOpen2(!isMenuOpen2)}
@@ -244,7 +244,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="px-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-base-100">
+    <div className="px-4 border-3 border-primary rounded-4xl py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-base-100">
       <div className="relative flex items-center justify-between">
         <div data-aos="fade-right">
           <CompanyLogo></CompanyLogo>
