@@ -151,174 +151,182 @@ const Register = () => {
   }
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-base-100 rounded shadow">
-      <h2 className="text-2xl font-bold mb-4 text-center">Register as Donor</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Email */}
-        <label className="input input-bordered w-full flex items-center gap-2">
-          <FiMail />
-          <input
-            {...register("email", { required: "Email is required" })}
-            type="email"
-            placeholder="Email"
-            className="grow"
-          />
-        </label>
-        {errors.email && (
-          <p className="text-error text-sm">{errors.email.message}</p>
-        )}
+    <div className="pt-28">
+      <div className="max-w-xl mx-auto p-6 bg-base-100 rounded shadow">
+        <h2 className="text-2xl font-bold mb-4 text-center">
+          Register as Donor
+        </h2>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Email */}
+          <label className="input input-bordered w-full flex items-center gap-2">
+            <FiMail />
+            <input
+              {...register("email", { required: "Email is required" })}
+              type="email"
+              placeholder="Email"
+              className="grow"
+            />
+          </label>
+          {errors.email && (
+            <p className="text-error text-sm">{errors.email.message}</p>
+          )}
 
-        {/* Name */}
-        <label className="input input-bordered w-full flex items-center gap-2">
-          <FiUser />
-          <input
-            {...register("name", { required: "Name is required" })}
-            type="text"
-            placeholder="Full Name"
-            className="grow"
-          />
-        </label>
-        {errors.name && (
-          <p className="text-error text-sm">{errors.name.message}</p>
-        )}
+          {/* Name */}
+          <label className="input input-bordered w-full flex items-center gap-2">
+            <FiUser />
+            <input
+              {...register("name", { required: "Name is required" })}
+              type="text"
+              placeholder="Full Name"
+              className="grow"
+            />
+          </label>
+          {errors.name && (
+            <p className="text-error text-sm">{errors.name.message}</p>
+          )}
 
-        {/* Avatar */}
-        <label className="input w-full input-bordered flex items-center gap-2">
-          <FiImage />
-          <input
-            {...register("avatar", { required: "Avatar is required" })}
-            type="file"
-            accept="image/*"
-            className="file-input grow"
-          />
-        </label>
-        {errors.avatar && (
-          <p className="text-error text-sm">{errors.avatar.message}</p>
-        )}
+          {/* Avatar */}
+          <label className="input w-full input-bordered flex items-center gap-2">
+            <FiImage />
+            <input
+              {...register("avatar", { required: "Avatar is required" })}
+              type="file"
+              accept="image/*"
+              className="file-input grow"
+            />
+          </label>
+          {errors.avatar && (
+            <p className="text-error text-sm">{errors.avatar.message}</p>
+          )}
 
-        {/* Blood Group */}
-        <label className="input w-full input-bordered flex items-center gap-2">
-          <FiDroplet />
-          <select
-            {...register("bloodGroup", { required: "Blood group is required" })}
-            className="grow bg-transparent"
+          {/* Blood Group */}
+          <label className="input w-full input-bordered flex items-center gap-2">
+            <FiDroplet />
+            <select
+              {...register("bloodGroup", {
+                required: "Blood group is required",
+              })}
+              className="grow bg-transparent"
+            >
+              <option value="">Select Blood Group</option>
+              {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map(
+                (group) => (
+                  <option key={group} value={group}>
+                    {group}
+                  </option>
+                )
+              )}
+            </select>
+          </label>
+          {errors.bloodGroup && (
+            <p className="text-error text-sm">{errors.bloodGroup.message}</p>
+          )}
+
+          {/* District */}
+          <label className="input w-full input-bordered flex items-center gap-2">
+            <FiMapPin />
+            <select
+              {...register("district", { required: "District is required" })}
+              className="grow bg-transparent"
+            >
+              <option value="">Select District</option>
+              {districts.map((district) => (
+                <option key={district.id} value={district.id}>
+                  {district.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          {errors.district && (
+            <p className="text-error text-sm">{errors.district.message}</p>
+          )}
+
+          {/* Upazila */}
+          <label className="input w-full input-bordered flex items-center gap-2">
+            <FiMapPin />
+            <select
+              {...register("upazila", { required: "Upazila is required" })}
+              className="grow bg-transparent"
+            >
+              <option value="">Select Upazila</option>
+              {filteredUpazilas.map((upazila) => (
+                <option key={upazila.id} value={upazila.name}>
+                  {upazila.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          {errors.upazila && (
+            <p className="text-error text-sm">{errors.upazila.message}</p>
+          )}
+
+          {/* Password */}
+          <label className="input w-full input-bordered flex items-center gap-2 relative">
+            <FiLock />
+            <input
+              {...register("password", {
+                required: "Password is required",
+                pattern: {
+                  value: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/,
+                  message:
+                    "Password must contain at least 6 characters, one uppercase, and one lowercase letter",
+                },
+              })}
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="grow pr-8"
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 cursor-pointer"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </label>
+          {errors.password && (
+            <p className="text-error text-sm">{errors.password.message}</p>
+          )}
+
+          {/* Confirm Password */}
+          <label className="input w-full input-bordered flex items-center gap-2 relative">
+            <FiLock />
+            <input
+              {...register("confirm_password", {
+                required: "Confirm Password is required",
+                validate: (value) =>
+                  value === passwordValue || "Passwords do not match",
+              })}
+              type={showConfirmPassword ? "text" : "password"}
+              placeholder="Confirm Password"
+              className="grow pr-8"
+            />
+            <span
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute right-3 cursor-pointer"
+            >
+              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </label>
+          {errors.confirm_password && (
+            <p className="text-error text-sm">
+              {errors.confirm_password.message}
+            </p>
+          )}
+
+          <button type="submit" className="btn btn-primary w-full">
+            Register
+          </button>
+        </form>
+        <p className="text-center mt-4 text-sm">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="text-primary font-medium hover:underline"
           >
-            <option value="">Select Blood Group</option>
-            {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map((group) => (
-              <option key={group} value={group}>
-                {group}
-              </option>
-            ))}
-          </select>
-        </label>
-        {errors.bloodGroup && (
-          <p className="text-error text-sm">{errors.bloodGroup.message}</p>
-        )}
-
-        {/* District */}
-        <label className="input w-full input-bordered flex items-center gap-2">
-          <FiMapPin />
-          <select
-            {...register("district", { required: "District is required" })}
-            className="grow bg-transparent"
-          >
-            <option value="">Select District</option>
-            {districts.map((district) => (
-              <option key={district.id} value={district.id}>
-                {district.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        {errors.district && (
-          <p className="text-error text-sm">{errors.district.message}</p>
-        )}
-
-        {/* Upazila */}
-        <label className="input w-full input-bordered flex items-center gap-2">
-          <FiMapPin />
-          <select
-            {...register("upazila", { required: "Upazila is required" })}
-            className="grow bg-transparent"
-          >
-            <option value="">Select Upazila</option>
-            {filteredUpazilas.map((upazila) => (
-              <option key={upazila.id} value={upazila.name}>
-                {upazila.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        {errors.upazila && (
-          <p className="text-error text-sm">{errors.upazila.message}</p>
-        )}
-
-        {/* Password */}
-        <label className="input w-full input-bordered flex items-center gap-2 relative">
-          <FiLock />
-          <input
-            {...register("password", {
-              required: "Password is required",
-              pattern: {
-                value: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/,
-                message:
-                  "Password must contain at least 6 characters, one uppercase, and one lowercase letter",
-              },
-            })}
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            className="grow pr-8"
-          />
-          <span
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 cursor-pointer"
-          >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
-          </span>
-        </label>
-        {errors.password && (
-          <p className="text-error text-sm">{errors.password.message}</p>
-        )}
-
-        {/* Confirm Password */}
-        <label className="input w-full input-bordered flex items-center gap-2 relative">
-          <FiLock />
-          <input
-            {...register("confirm_password", {
-              required: "Confirm Password is required",
-              validate: (value) =>
-                value === passwordValue || "Passwords do not match",
-            })}
-            type={showConfirmPassword ? "text" : "password"}
-            placeholder="Confirm Password"
-            className="grow pr-8"
-          />
-          <span
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="absolute right-3 cursor-pointer"
-          >
-            {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-          </span>
-        </label>
-        {errors.confirm_password && (
-          <p className="text-error text-sm">
-            {errors.confirm_password.message}
-          </p>
-        )}
-
-        <button type="submit" className="btn btn-primary w-full">
-          Register
-        </button>
-      </form>
-      <p className="text-center mt-4 text-sm">
-        Already have an account?{" "}
-        <Link
-          to="/login"
-          className="text-primary font-medium hover:underline"
-        >
-          Login
-        </Link>
-      </p>
+            Login
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

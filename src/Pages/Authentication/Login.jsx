@@ -45,59 +45,61 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-base-100 p-6 rounded shadow">
-      <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Email Field */}
-        <label className="input w-full input-bordered flex items-center gap-2">
-          <FiMail />
-          <input
-            type="email"
-            placeholder="Email"
-            {...register("email", { required: "Email is required" })}
-            className="grow"
-          />
-        </label>
-        {errors.email && (
-          <p className="text-error text-sm ml-1">{errors.email.message}</p>
-        )}
+    <div className="pt-34">
+      <div className="max-w-md mx-auto bg-base-100 p-6 rounded shadow">
+        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Email Field */}
+          <label className="input w-full input-bordered flex items-center gap-2">
+            <FiMail />
+            <input
+              type="email"
+              placeholder="Email"
+              {...register("email", { required: "Email is required" })}
+              className="grow"
+            />
+          </label>
+          {errors.email && (
+            <p className="text-error text-sm ml-1">{errors.email.message}</p>
+          )}
 
-        {/* Password Field */}
-        <label className="input w-full input-bordered flex items-center gap-2 relative">
-          <FiLock />
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            {...register("password", { required: "Password is required" })}
-            className="grow pr-8"
-          />
-          <span
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 cursor-pointer"
+          {/* Password Field */}
+          <label className="input w-full input-bordered flex items-center gap-2 relative">
+            <FiLock />
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              {...register("password", { required: "Password is required" })}
+              className="grow pr-8"
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 cursor-pointer"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </label>
+          {errors.password && (
+            <p className="text-error text-sm ml-1">{errors.password.message}</p>
+          )}
+
+          {/* Submit Button */}
+          <button type="submit" className="btn btn-primary w-full">
+            Login
+          </button>
+        </form>
+
+        {/* Register Link */}
+        <p className="text-center mt-4 text-sm">
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            className="text-primary font-medium hover:underline"
           >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
-          </span>
-        </label>
-        {errors.password && (
-          <p className="text-error text-sm ml-1">{errors.password.message}</p>
-        )}
-
-        {/* Submit Button */}
-        <button type="submit" className="btn btn-primary w-full">
-          Login
-        </button>
-      </form>
-
-      {/* Register Link */}
-      <p className="text-center mt-4 text-sm">
-        Don't have an account?{" "}
-        <Link
-          to="/register"
-          className="text-primary font-medium hover:underline"
-        >
-          Register
-        </Link>
-      </p>
+            Register
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };
