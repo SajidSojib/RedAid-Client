@@ -10,8 +10,16 @@ import Home from './Pages/Home/Home';
 import AuthProvider from './Firebase/AuthProvider';
 import Login from './Pages/Authentication/Login';
 import Register from './Pages/Authentication/Register';
-AOS.init();
+import PrivateRoute from './Routes/PrivateRoute';
+import DashboardLayout from './Layouts/DashboardLayout';
+import DashHome from './Pages/DashBoard/DashHome';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
+AOS.init();
+const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,14 +39,26 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    children: [
+      {
+        index: true,
+        Component: DashHome
+      }
+    ]
+  }
 ]);
 
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-      <ToastContainer />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <ToastContainer />
+      </AuthProvider>
+    </QueryClientProvider>
   </StrictMode>
 );

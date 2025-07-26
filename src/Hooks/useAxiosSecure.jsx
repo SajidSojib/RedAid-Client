@@ -39,11 +39,7 @@ const useAxiosSecure = () => {
         return Promise.reject(err);
       }
     );
-    return (
-        <div>
-            
-        </div>
-    );
+    return axiosSecure;
 };
 
 export default useAxiosSecure;
