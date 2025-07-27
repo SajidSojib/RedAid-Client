@@ -20,6 +20,9 @@ import DashboardHome from './Pages/DashBoard/DashboardHome/DashboardHome';
 import CreateDonReq from './Pages/DashBoard/CreateDonReq/CreateDonReq';
 import EditDonation from './Pages/DashBoard/DashboardHome/EditDonation';
 import MyRequests from './Pages/DashBoard/MyRequests/MyRequests';
+import Forbidden from './Pages/Error/Forbidden';
+import AdminRoute from './Routes/AdminRoute';
+import AllUsers from './Pages/DashBoard/AllUsers/AllUsers';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -39,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         Component: Register,
+      },
+      {
+        path: "forbidden",
+        Component: Forbidden,
       },
     ],
   },
@@ -64,7 +71,11 @@ const router = createBrowserRouter([
       },
       {
         path: "my-donation-requests",
-        element: <MyRequests></MyRequests>
+        element: <MyRequests></MyRequests>,
+      },
+      {
+        path: "all-users",
+        element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
     ],
   },

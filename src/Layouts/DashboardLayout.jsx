@@ -123,25 +123,12 @@ const DashboardLayout = () => {
                 Payment History
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/dashboard/trackParcel"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 px-4 py-2 rounded ${
-                    isActive ? "bg-primary text-black" : "hover:bg-base-200"
-                  }`
-                }
-              >
-                <FaSearchLocation />
-                Track Parcel
-              </NavLink>
-            </li>
             {!roleLoading && role === "admin" && (
               <>
                 {" "}
                 <li>
                   <NavLink
-                    to="/dashboard/activeRiders"
+                    to="/dashboard/all-users"
                     className={({ isActive }) =>
                       `flex items-center gap-2 px-4 py-2 rounded ${
                         isActive ? "bg-primary text-black" : "hover:bg-base-200"
@@ -149,12 +136,12 @@ const DashboardLayout = () => {
                     }
                   >
                     <FaCheckCircle />
-                    Active Riders
+                    All Users
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    to="/dashboard/pendingRiders"
+                    to="/dashboard/all-blood-donation-request"
                     className={({ isActive }) =>
                       `flex items-center gap-2 px-4 py-2 rounded ${
                         isActive ? "bg-primary text-black" : "hover:bg-base-200"
@@ -162,33 +149,7 @@ const DashboardLayout = () => {
                     }
                   >
                     <FaClock />
-                    Pending Riders
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/assignRider"
-                    className={({ isActive }) =>
-                      `flex items-center gap-2 px-4 py-2 rounded ${
-                        isActive ? "bg-primary text-black" : "hover:bg-base-200"
-                      }`
-                    }
-                  >
-                    <FaMotorcycle className="inline mr-2" />
-                    Assign Rider
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/adminControl"
-                    className={({ isActive }) =>
-                      `flex items-center gap-2 px-4 py-2 rounded ${
-                        isActive ? "bg-primary text-black" : "hover:bg-base-200"
-                      }`
-                    }
-                  >
-                    <FaUserShield />
-                    Admin Control
+                    All Blood Donation Request
                   </NavLink>
                 </li>
               </>

@@ -27,8 +27,8 @@ const Welcome = () => {
     <div className="bg-base-300 p-6 rounded-2xl">
       {/* Top Row: Avatar + Welcome Message */}
       <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 mb-6">
-        <div className="bg-accent ring-2 ring-primary rounded-full p-2 text-accent-content shadow-inner">
-          <img src={user?.photoURL} alt="" />
+        <div className="bg-accent ring-2 ring-primary rounded-full p-1 text-accent-content shadow-inner">
+          <img className="w-18 h-18 rounded-full" src={user?.photoURL} alt="" />
         </div>
         <div className="text-center md:text-left">
           <h2 className="text-2xl font-bold text-base-content">
