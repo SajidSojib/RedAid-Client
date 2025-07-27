@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, useLocation } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
@@ -13,6 +13,7 @@ const EditDonation = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const location = useLocation();
 
   const {
     register,
@@ -122,7 +123,7 @@ const EditDonation = () => {
           "Donation request updated successfully.",
           "success"
         );
-        navigate("/dashboard/my-requests"); // change if route differs
+        navigate(-1); // change if route differs
       }
     } catch (err) {
       Swal.fire("Error", "Could not update donation request.", "error");

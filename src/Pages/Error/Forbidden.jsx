@@ -7,7 +7,7 @@ const Forbidden = () => {
       <h1 className="text-5xl">This Page is Forbidden</h1>
       <p className="text-3xl mt-3">You can't access this page</p>
 
-      <Link>
+      <Link to="/dashboard/home">
         <button className="btn btn-primary mt-5 text-black">
           Back to Home
         </button>

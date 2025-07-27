@@ -23,6 +23,7 @@ import MyRequests from './Pages/DashBoard/MyRequests/MyRequests';
 import Forbidden from './Pages/Error/Forbidden';
 import AdminRoute from './Routes/AdminRoute';
 import AllUsers from './Pages/DashBoard/AllUsers/AllUsers';
+import AllRequests from './Pages/DashBoard/AllRequests/AllRequests';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -75,7 +76,15 @@ const router = createBrowserRouter([
       },
       {
         path: "all-users",
-        element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "all-blood-donation-request",
+        element:<AdminRoute><AllRequests></AllRequests></AdminRoute>
       },
     ],
   },
