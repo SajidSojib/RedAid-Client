@@ -153,110 +153,178 @@ const EditDonation = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-1 sm:grid-cols-2 gap-4"
       >
-        <input
-          readOnly
-          defaultValue={user?.displayName}
-          className="input input-primary border-base-300 w-full"
-          placeholder="Requester Name"
-        />
-
-        <input
-          readOnly
-          defaultValue={user?.email}
-          className="input input-primary border-base-300 w-full"
-          placeholder="Requester Email"
-        />
-
-        <input
-          {...register("recipientName", { required: true })}
-          className="input input-primary border-base-300 w-full"
-          placeholder="Recipient Name"
-        />
-
-        {/* Division */}
-        <select
-          {...register("division", { required: true })}
-          className="select select-primary border-base-300 w-full"
-        >
-          <option value={donation?.division}>{donation?.division}</option>
-          {divisions.map((division) => (
-            <option key={division.id} value={division.id}>
-              {division.name}
-            </option>
-          ))}
-        </select>
-
-        {/* District */}
-        <select
-          {...register("district", { required: true })}
-          className="select select-primary border-base-300 w-full"
-        >
-          <option value={donation?.district}>{donation?.district}</option>
-          {filteredDistricts.map((district) => (
-            <option key={district.id} value={district.id}>
-              {district.name}
-            </option>
-          ))}
-        </select>
-
-        {/* Upazila */}
-        <select
-          {...register("upazila", { required: true })}
-          className="select select-primary border-base-300 w-full"
-        >
-          <option value={donation?.upazila}>{donation?.upazila}</option>
-          {filteredUpazilas.map((upazila) => (
-            <option key={upazila.id} value={upazila.name}>
-              {upazila.name}
-            </option>
-          ))}
-        </select>
-
-        <input
-          {...register("hospitalName", { required: true })}
-          className="input input-primary border-base-300 w-full"
-          placeholder="Hospital Name"
-        />
-
-        <input
-          {...register("address", { required: true })}
-          className="input input-primary border-base-300 w-full"
-          placeholder="Full Address"
-        />
-
-        <div className="flex flex-col md:col-span-2 gap-4 md:flex-row justify-between items-center">
-          <select
-            {...register("bloodGroup", { required: true })}
-            className="select select-primary border-base-300 w-full"
-          >
-            <option value="">Select Blood Group</option>
-            {bloodGroups.map((group) => (
-              <option key={group} value={group}>
-                {group}
-              </option>
-            ))}
-          </select>
-
+        {/* Requester Name */}
+        <div>
+          <label className="label">
+            <span className="label-text text-xs">Requester Name</span>
+          </label>
           <input
-            type="date"
-            {...register("donationDate", { required: true })}
+            readOnly
+            defaultValue={user?.displayName}
             className="input input-primary border-base-300 w-full"
-          />
-
-          <input
-            type="time"
-            {...register("donationTime", { required: true })}
-            className="input input-primary border-base-300 w-full"
+            placeholder="Requester Name"
           />
         </div>
 
-        <textarea
-          {...register("message", { required: true })}
-          className="textarea textarea-primary border-base-300 w-full md:col-span-2"
-          placeholder="Why do you need blood?"
-          rows={4}
-        ></textarea>
+        {/* Requester Email */}
+        <div>
+          <label className="label">
+            <span className="label-text text-xs">Requester Email</span>
+          </label>
+          <input
+            readOnly
+            defaultValue={user?.email}
+            className="input input-primary border-base-300 w-full"
+            placeholder="Requester Email"
+          />
+        </div>
 
+        {/* Recipient Name */}
+        <div>
+          <label className="label">
+            <span className="label-text text-xs">Recipient Name</span>
+          </label>
+          <input
+            {...register("recipientName", { required: true })}
+            className="input input-primary border-base-300 w-full"
+            placeholder="Recipient Name"
+          />
+        </div>
+
+        {/* Division */}
+        <div>
+          <label className="label">
+            <span className="label-text text-xs">Division</span>
+          </label>
+          <select
+            {...register("division", { required: true })}
+            className="select select-primary border-base-300 w-full"
+          >
+            <option value={donation?.division}>{donation?.division}</option>
+            {divisions.map((division) => (
+              <option key={division.id} value={division.id}>
+                {division.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* District */}
+        <div>
+          <label className="label">
+            <span className="label-text text-xs">District</span>
+          </label>
+          <select
+            {...register("district", { required: true })}
+            className="select select-primary border-base-300 w-full"
+          >
+            <option value={donation?.district}>{donation?.district}</option>
+            {filteredDistricts.map((district) => (
+              <option key={district.id} value={district.id}>
+                {district.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Upazila */}
+        <div>
+          <label className="label">
+            <span className="label-text text-xs">Upazila</span>
+          </label>
+          <select
+            {...register("upazila", { required: true })}
+            className="select select-primary border-base-300 w-full"
+          >
+            <option value={donation?.upazila}>{donation?.upazila}</option>
+            {filteredUpazilas.map((upazila) => (
+              <option key={upazila.id} value={upazila.name}>
+                {upazila.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Hospital Name */}
+        <div>
+          <label className="label">
+            <span className="label-text text-xs">Hospital Name</span>
+          </label>
+          <input
+            {...register("hospitalName", { required: true })}
+            className="input input-primary border-base-300 w-full"
+            placeholder="Hospital Name"
+          />
+        </div>
+
+        {/* Address */}
+        <div>
+          <label className="label">
+            <span className="label-text text-xs">Full Address</span>
+          </label>
+          <input
+            {...register("address", { required: true })}
+            className="input input-primary border-base-300 w-full"
+            placeholder="Full Address"
+          />
+        </div>
+
+        {/* Blood Group, Date, Time */}
+        <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label className="label">
+              <span className="label-text text-xs">Blood Group</span>
+            </label>
+            <select
+              {...register("bloodGroup", { required: true })}
+              className="select select-primary border-base-300 w-full"
+            >
+              <option value="">Select Blood Group</option>
+              {bloodGroups.map((group) => (
+                <option key={group} value={group}>
+                  {group}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="label">
+              <span className="label-text text-xs">Donation Date</span>
+            </label>
+            <input
+              type="date"
+              {...register("donationDate", { required: true })}
+              className="input input-primary border-base-300 w-full"
+            />
+          </div>
+
+          <div>
+            <label className="label">
+              <span className="label-text text-xs">Donation Time</span>
+            </label>
+            <input
+              type="time"
+              {...register("donationTime", { required: true })}
+              className="input input-primary border-base-300 w-full"
+            />
+          </div>
+        </div>
+
+        {/* Message */}
+        <div className="md:col-span-2">
+          <label className="label">
+            <span className="label-text text-xs">Why do you need blood?</span>
+          </label>
+          <textarea
+            {...register("message", { required: true })}
+            className="textarea textarea-primary border-base-300 w-full"
+            placeholder="Why do you need blood?"
+            rows={4}
+          ></textarea>
+        </div>
+
+        {/* Submit */}
         <button
           type="submit"
           className="btn bg-primary text-white hover:bg-red-700 sm:col-span-2"

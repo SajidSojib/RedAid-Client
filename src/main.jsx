@@ -19,6 +19,7 @@ import {
 import DashboardHome from './Pages/DashBoard/DashboardHome/DashboardHome';
 import CreateDonReq from './Pages/DashBoard/CreateDonReq/CreateDonReq';
 import EditDonation from './Pages/DashBoard/DashboardHome/EditDonation';
+import MyRequests from './Pages/DashBoard/MyRequests/MyRequests';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -55,12 +56,16 @@ const router = createBrowserRouter([
       },
       {
         path: "create-donation-request",
-        element: <CreateDonReq></CreateDonReq>
+        element: <CreateDonReq></CreateDonReq>,
       },
       {
-        path: 'edit-donation/:id',
-        element: <EditDonation></EditDonation>
-      }
+        path: "edit-donation/:id",
+        element: <EditDonation></EditDonation>,
+      },
+      {
+        path: "my-donation-requests",
+        element: <MyRequests></MyRequests>
+      },
     ],
   },
 ]);

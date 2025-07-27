@@ -15,7 +15,7 @@ const RecentDonations = () => {
     queryKey: ['recentDonations', user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/donation-requests?email=${user?.email}&limit=3`);
-      return res.data;
+      return res.data.donations;
     },
     enabled: !!user?.email,
   });
@@ -88,7 +88,7 @@ const RecentDonations = () => {
                   donation.status === 'inprogress' ? 'text-info' :
                   donation.status === 'canceled' ? 'text-error' : 'text-warning'}`}>{donation.status}</td>
                 <td>
-                  {donation.status === 'inprogress' && donation.donorName ? (
+                  {donation.status.toLowerCase() === 'inprogress' && donation.donorName ? (
                     <>
                       <p>{donation.donorName}</p>
                       <p className="text-sm text-neutral-content">{donation.donorEmail}</p>
@@ -96,7 +96,7 @@ const RecentDonations = () => {
                   ) : '—'}
                 </td>
                 <td className="space-x-1">
-                  {donation.status === 'inprogress' && (
+                  {donation.status.toLowerCase() === 'inprogress' && (
                     <>
                       <button className="btn btn-xs btn-success" onClick={() => updateStatus.mutate({ id: donation._id, status: 'done' })}>Done</button>
                       <button className="btn btn-xs btn-error" onClick={() => updateStatus.mutate({ id: donation._id, status: 'canceled' })}>Cancel</button>
