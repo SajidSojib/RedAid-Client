@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useRole from "../../../Hooks/useRole";
@@ -26,6 +26,7 @@ const ContentManagement = () => {
   const limit = 3; // Blogs per page
   const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const { data, isLoading } = useQuery({
     queryKey: ["blogs", statusFilter, categoryFilter, search, page],
@@ -76,24 +77,28 @@ const ContentManagement = () => {
 
   return (
     <div className="p-4 space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-center text-primary">Manage Blog Posts</h1>
-          <p className="text-gray-600 text-center">
-            Create, filter, publish and delete blogs
-          </p>
-        </div>
-        <form onSubmit={handleSearch} className="flex flex-wrap mt-4 gap-3">
+      <div>
+        <h1 className="text-3xl font-bold text-center text-primary">
+          Manage Blog Posts
+        </h1>
+        <p className="text-gray-600 text-center">
+          Create, filter, publish and delete blogs
+        </p>
+      </div>
+
+      <div className="flex items-center justify-between mt-4 gap-12">
+        <form onSubmit={handleSearch} className="grid w-full sm:grid-cols-2 grid-cols-1 md:grid-cols-5 gap-3">
           <input
             type="text"
             placeholder="Search by title..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="input input-bordered flex-4"
+            className="input input-bordered md:col-span-2 w-full"
           />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="select select-bordered flex-1"
+            className="select select-bordered w-full"
           >
             <option value="">All Status</option>
             <option value="draft">Draft</option>
@@ -102,7 +107,7 @@ const ContentManagement = () => {
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="select select-bordered flex-1"
+            className="select select-bordered w-full"
           >
             <option value="">All Categories</option>
             {categories.map((cat) => (
@@ -115,6 +120,13 @@ const ContentManagement = () => {
             Search
           </button>
         </form>
+        <Link
+          to="/dashboard/content-management/add-blog"
+          className="btn btn-primary"
+        >
+          Add Blog
+        </Link>
+      </div>
 
       {isLoading ? (
         <p>Loading blogs...</p>
@@ -135,7 +147,7 @@ const ContentManagement = () => {
                       size={30}
                       className="hover:text-white text-purple-600 cursor-pointer rounded-full p-1 hover:bg-purple-600"
                       onClick={() =>
-                        (window.location.href = `/dashboard/blogs/edit/${blog._id}`)
+                        navigate(`/dashboard/content-management/update/${blog._id}`)
                       }
                     />
                     <MdDeleteForever
@@ -154,7 +166,7 @@ const ContentManagement = () => {
                 />
                 <h2 className="mb-1 text-xl font-semibold">{blog.title}</h2>
                 <p className="text-sm dark:text-gray-600">
-                  {blog.content?.slice(0, 150)}...
+                  <p dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 150)+"..." }}></p>
                 </p>
                 <div className="badge badge-secondary absolute text-base right-0 top-0 capitalize">
                   {blog.status}
