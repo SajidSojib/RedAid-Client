@@ -152,6 +152,19 @@ const DashboardLayout = () => {
                     All Blood Donation Request
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/content-management"
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 px-4 py-2 rounded ${
+                        isActive ? "bg-primary text-black" : "hover:bg-base-200"
+                      }`
+                    }
+                  >
+                    <FaClock />
+                    Content Management
+                  </NavLink>
+                </li>
               </>
             )}
             <li>

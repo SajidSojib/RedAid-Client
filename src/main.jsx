@@ -24,6 +24,8 @@ import Forbidden from './Pages/Error/Forbidden';
 import AdminRoute from './Routes/AdminRoute';
 import AllUsers from './Pages/DashBoard/AllUsers/AllUsers';
 import AllRequests from './Pages/DashBoard/AllRequests/AllRequests';
+import ContentManagement from './Pages/DashBoard/ContentManagement/ContentManagement';
+import AddBlog from './Pages/DashBoard/ContentManagement/AddBlog';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -84,8 +86,20 @@ const router = createBrowserRouter([
       },
       {
         path: "all-blood-donation-request",
-        element:<AdminRoute><AllRequests></AllRequests></AdminRoute>
+        element: (
+          <AdminRoute>
+            <AllRequests></AllRequests>
+          </AdminRoute>
+        ),
       },
+      {
+        path: "content-management",
+        element: <AdminRoute><ContentManagement></ContentManagement></AdminRoute>
+      },
+      {
+        path: "content-management/add-blog",
+        element: <AdminRoute><AddBlog></AddBlog></AdminRoute>
+      }
     ],
   },
 ]);
