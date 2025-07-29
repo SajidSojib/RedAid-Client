@@ -1,12 +1,59 @@
-# React + Vite
+Here’s a complete `README.md` file for your **RedAid** project:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+````markdown
+# 🩸 RedAid – Blood Donation Platform
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Live Site:** [https://red--aid.web.app/](https://red--aid.web.app/)  
+**Server (Backend):** [https://redaid-server.vercel.app/](https://redaid-server.vercel.app/)
 
-## Expanding the ESLint configuration
+RedAid is a MERN stack-based blood donation platform designed to seamlessly connect blood donors with those in urgent need. The platform promotes a user-friendly interface and efficient workflows to simplify and support blood donation efforts.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Features
+
+- 🔐 **Donor Registration & Login**
+- 📦 **Create & Manage Blood Donation Requests**
+- 🔍 **Search Nearby Donors by Location & Blood Type**
+- 📊 **Role-Based Dashboard (Admin, Donor, Volunteer)**
+- 🧾 **Content Management System (Blog & Tips)**
+- 💳 **Secure Donations with Stripe Integration**
+- 🛡 **Protected Routes using Firebase Authentication**
+- 📁 **Image Upload using ImageBB**
+- 🎨 **Responsive & Accessible UI with Tailwind CSS + DaisyUI**
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 19**
+- **Tailwind CSS v4**
+- **React Router v7**
+- **React Hook Form**
+- **Firebase Authentication**
+- **React Query (TanStack Query)**
+- **Stripe.js (Donation Payment)**
+- **SweetAlert2** for modals
+- **Jodit Editor** for rich text content
+
+### Backend
+- **Express.js**
+- **MongoDB (with native driver)**
+- **Firebase Admin SDK**
+- **Stripe API**
+- **Dotenv & CORS**
+
+---
+
+
+## 🔐 Roles in the App
+
+* **Admin:** Manages all users, donation requests, and content.
+* **Volunteer:** Can view and update donation request statuses.
+* **Donor:** Can register, donate, and view own requests.
+
+---
+

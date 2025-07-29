@@ -9,6 +9,7 @@ import {
   FaClock,
 } from "react-icons/fa";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Search = () => {
   const axiosPublic = useAxiosPublic();
@@ -48,12 +49,12 @@ const Search = () => {
     queryKey: ["searchDonors", searchParams],
     queryFn: async () => {
       if (!searchParams) return [];
-      
-    const res = await axiosPublic.get(
-      `/donors?bloodGroup=${searchParams.bloodGroup}&district=${searchParams.district}&upazila=${searchParams.upazila}&division=${searchParams.division}`
-    )
-      if(res.data.length === 0){
-        setMsg("No Donor Found")
+
+      const res = await axiosPublic.get(
+        `/donors?bloodGroup=${searchParams.bloodGroup}&district=${searchParams.district}&upazila=${searchParams.upazila}&division=${searchParams.division}`
+      );
+      if (res.data.length === 0) {
+        setMsg("No Donor Found");
       }
       return res.data;
     },
@@ -61,19 +62,24 @@ const Search = () => {
   });
 
   const onSubmit = (data) => {
-    const divisionName = data.division && divisions.find((d) => d.id === data.division).name;
-    const districtName = data.district && districts.find((d) => d.id === data.district)?.name;
+    const divisionName =
+      data.division && divisions.find((d) => d.id === data.division).name;
+    const districtName =
+      data.district && districts.find((d) => d.id === data.district)?.name;
 
     data = {
       ...data,
       division: divisionName,
       district: districtName,
-    }
+    };
     setSearchParams(data);
   };
 
   return (
     <div className="pt-20">
+      <Helmet>
+        <title>Search Donor | RedAid</title>
+      </Helmet>
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 ">
         {/* Title */}
         <div className="text-center mb-6">
@@ -198,9 +204,7 @@ const Search = () => {
               </div>
             ))
           ) : (
-            <p className="text-center col-span-full text-red-500">
-              {msg}
-            </p>
+            <p className="text-center col-span-full text-red-500">{msg}</p>
           )}
         </div>
       </div>
