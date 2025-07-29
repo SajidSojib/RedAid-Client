@@ -53,7 +53,7 @@ const Search = () => {
       `/donors?bloodGroup=${searchParams.bloodGroup}&district=${searchParams.district}&upazila=${searchParams.upazila}&division=${searchParams.division}`
     )
       if(res.data.length === 0){
-        setMsg("No Donors Found");
+        setMsg("No Donor Found")
       }
       return res.data;
     },
