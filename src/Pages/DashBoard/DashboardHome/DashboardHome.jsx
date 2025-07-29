@@ -4,10 +4,13 @@ import RecentDonations from './RecentDonations';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
+import Stats from './Stats';
+import useRole from '../../../Hooks/useRole';
 
 const DashboardHome = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const {role, roleLoading} = useRole();
   const { data, isLoading } = useQuery({
     queryKey: ['user', user?.email],
     queryFn: async () => {
@@ -17,13 +20,23 @@ const DashboardHome = () => {
     enabled: !!user?.email
   })
 
-  if (isLoading) {
+    const { data: data2, isLoading2 } = useQuery({
+      queryKey: ["stats"],
+      queryFn: async () => {
+        const res = await axiosSecure.get(`/stats`);
+        console.log(res.data);
+        return res.data;
+      },
+      enabled: !roleLoading && !!role && role !== "donor",
+    });
+  if (isLoading || roleLoading || isLoading2) {
     return <progress className="progress w-56"></progress>
   }
     return (
       <div>
         <Welcome user={data}></Welcome>
         <RecentDonations></RecentDonations>
+        <Stats role={role} data2={data2}></Stats>
       </div>
     );
 };
