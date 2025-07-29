@@ -1,11 +1,11 @@
-import axios from 'axios';
-import React from 'react';
+import axios from "axios";
+import React from "react";
 
-const axiosPub=axios.create({
-    baseURL:"http://localhost:9000"
-})
+const axiosPub = axios.create({
+  baseURL: "https://redaid-server.vercel.app",
+});
 const useAxiosPublic = () => {
-    return axiosPub;
+  return axiosPub;
 };
 
 export default useAxiosPublic;

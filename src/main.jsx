@@ -32,6 +32,7 @@ import DonationRequests from './Pages/DonationRequests/DonationRequests';
 import Blogs from './Pages/Blogs/Blogs';
 import BlogDetails from './Pages/Blogs/BlogDetails';
 import Funding from './Pages/Funding/Funding';
+import Error from './Pages/Error/Error';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -132,6 +133,10 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path: "*",
+    Component: Error
+  }
 ]);
 
 
