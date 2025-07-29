@@ -9,7 +9,7 @@ import {
   FiLock,
   FiMapPin,
 } from "react-icons/fi";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaRegCalendarAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
@@ -129,9 +129,8 @@ const Register = () => {
       role: "donor",
       donationRequest: 0,
       createdAt: new Date(),
-      lastLogin: new Date(),
+      lastDonated: data.lastDonated
     };
-
     // 5. Save to database
     try {
       const res = await axiosPublic.post("/users", donorData);
@@ -232,6 +231,15 @@ const Register = () => {
           </label>
           {errors.bloodGroup && (
             <p className="text-error text-sm">{errors.bloodGroup.message}</p>
+          )}
+
+          {/* last donated */}
+          <label className="input w-full input-bordered flex items-center gap-2">
+            <FaRegCalendarAlt /> Last Donated on
+            <input className="grow" type="date" {...register("lastDonated", {required: "Last Donation Date is required"})} />
+          </label>
+          {errors.lastDonated && (
+            <p className="text-error text-sm">{errors.lastDonated.message}</p>
           )}
 
           {/* division */}

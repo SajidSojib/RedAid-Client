@@ -27,6 +27,7 @@ import AllRequests from './Pages/DashBoard/AllRequests/AllRequests';
 import ContentManagement from './Pages/DashBoard/ContentManagement/ContentManagement';
 import AddBlog from './Pages/DashBoard/ContentManagement/AddBlog';
 import Profile from './Pages/DashBoard/Profile/Profile';
+import Search from './Pages/Search/Search';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         path: "forbidden",
         Component: Forbidden,
       },
+      {
+        path: 'search-donor',
+        Component: Search
+      }
     ],
   },
   {

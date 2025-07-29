@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { MdCancel } from "react-icons/md";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 const fetchJSON = (url) => fetch(url).then((res) => res.json());
 
@@ -197,6 +198,18 @@ const Profile = () => {
             </select>
           </label>
 
+          {/* last Donated */}
+          <label className="input input-bordered w-full flex items-center gap-2">
+            <FaRegCalendarAlt /> Last Donated on
+            <input
+              type="date"
+              {...register("lastDonated", { required: true })}
+              defaultValue={userData.lastDonated}
+              readOnly={!isEditable}
+              className="grow bg-transparent"
+            />
+          </label>
+
           {/* Division */}
           <label className="input input-bordered w-full flex items-center gap-2">
             <FiMapPin />
@@ -262,7 +275,11 @@ const Profile = () => {
                 <button type="submit" className="btn btn-primary">
                   <FiSave className="mr-2" /> Save
                 </button>
-                <button type="button" onClick={() => setIsEditable(false)} className="btn ml-6 btn-accent">
+                <button
+                  type="button"
+                  onClick={() => setIsEditable(false)}
+                  className="btn ml-6 btn-accent"
+                >
                   <MdCancel className="mr-2" /> Cancel
                 </button>
               </div>

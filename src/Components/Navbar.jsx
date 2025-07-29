@@ -86,6 +86,25 @@ const Navbar = () => {
         data-aos-once="true"
       >
         <NavLink
+          to={"/search-donor"}
+          aria-label="Search Donor"
+          title="Search Donor"
+          className={({ isActive }) =>
+            isActive
+              ? "flex items-center gap-1 btn btn-primary"
+              : "flex btn btn-ghost hover:border-primary hover:border-2 hover:bg-base-100 hover:text-primary items-center gap-1"
+          }
+        >
+          Search Donor
+        </NavLink>
+      </li>
+      <li
+        data-aos="fade-down"
+        data-aos-duration="600"
+        data-aos-easing="ease-in-out"
+        data-aos-once="true"
+      >
+        <NavLink
           to={"/donation-request"}
           aria-label="Donation Request"
           title="Donation Requests"
@@ -100,7 +119,7 @@ const Navbar = () => {
       </li>
       <li
         data-aos="fade-down"
-        data-aos-duration="600"
+        data-aos-duration="800"
         data-aos-easing="ease-in-out"
         data-aos-once="true"
       >
@@ -122,7 +141,7 @@ const Navbar = () => {
         <>
           <li
             data-aos="fade-down"
-            data-aos-duration="800"
+            data-aos-duration="1000"
             data-aos-easing="ease-in-out"
             data-aos-once="true"
           >
