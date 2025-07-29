@@ -52,7 +52,9 @@ const Search = () => {
     const res = await axiosPublic.get(
       `/donors?bloodGroup=${searchParams.bloodGroup}&district=${searchParams.district}&upazila=${searchParams.upazila}&division=${searchParams.division}`
     )
-     console.log(res.data);
+      if(res.data.length === 0){
+        setMsg("No Donors Found");
+      }
       return res.data;
     },
     enabled: !!searchParams,

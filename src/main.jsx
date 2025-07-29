@@ -28,6 +28,7 @@ import ContentManagement from './Pages/DashBoard/ContentManagement/ContentManage
 import AddBlog from './Pages/DashBoard/ContentManagement/AddBlog';
 import Profile from './Pages/DashBoard/Profile/Profile';
 import Search from './Pages/Search/Search';
+import DonationRequests from './Pages/DonationRequests/DonationRequests';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: 'search-donor',
         Component: Search
+      },
+      {
+        path: 'donation-request',
+        element: <PrivateRoute><DonationRequests></DonationRequests></PrivateRoute>
       }
     ],
   },

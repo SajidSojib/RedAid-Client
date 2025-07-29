@@ -152,7 +152,7 @@ const AllRequests = () => {
                     donation.donorName ? (
                       <>
                         <p>{donation.donorName}</p>
-                        <p className="text-sm text-neutral-content">
+                        <p className="text-sm text-gray-400">
                           {donation.donorEmail}
                         </p>
                       </>
