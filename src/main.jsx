@@ -31,6 +31,7 @@ import Search from './Pages/Search/Search';
 import DonationRequests from './Pages/DonationRequests/DonationRequests';
 import Blogs from './Pages/Blogs/Blogs';
 import BlogDetails from './Pages/Blogs/BlogDetails';
+import Funding from './Pages/Funding/Funding';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: 'blogs/:id',
         element:<PrivateRoute><BlogDetails></BlogDetails></PrivateRoute>
+      },
+      {
+        path: 'funding',
+        element:<PrivateRoute><Funding></Funding></PrivateRoute>
       }
     ],
   },
