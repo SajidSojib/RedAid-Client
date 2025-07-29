@@ -3,8 +3,10 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaEllipsisV } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAuth from "../../../Hooks/useAuth";
 
 const AllUsers = () => {
+  const {user} = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
@@ -19,12 +21,10 @@ const AllUsers = () => {
       const res = await axiosSecure.get(
         `/users?status=${statusFilter}&page=${page}&limit=${limit}`
       );
-    //   console.log(res.data.users);
       return res.data;
     },
   });
 
-  console.log(users);
   // Mutation to update user role/status
   const updateUser = useMutation({
     mutationFn: async ({ id, payload }) => {
@@ -75,7 +75,7 @@ const AllUsers = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto pb-20">
         <table className="table">
           <thead className="bg-primary text-primary-content">
             <tr>
@@ -152,12 +152,12 @@ const AllUsers = () => {
                             onClick={() =>
                               confirmAndUpdate(
                                 user._id,
-                                { role: "doner" },
-                                "make Doner"
+                                { role: "donor" },
+                                "make Donor"
                               )
                             }
                           >
-                            Make Doner
+                            Make Donor
                           </button>
                         </li>
                       )}

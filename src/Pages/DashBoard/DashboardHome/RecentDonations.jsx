@@ -59,7 +59,7 @@ const RecentDonations = () => {
   if (!donations.length) return null;
 
   return (
-    <div className="p-4 bg-white rounded-xl shadow-md">
+    <div className="p-4 m-6 bg-white rounded-xl shadow-md">
       <h2 className="text-2xl font-semibold mb-4 text-neutral">Recent Donations</h2>
       <div className="overflow-x-auto">
         <table className="table">

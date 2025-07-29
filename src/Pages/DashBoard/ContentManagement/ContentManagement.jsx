@@ -6,6 +6,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import useRole from "../../../Hooks/useRole";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const categories = [
   "Donor Stories",
@@ -18,7 +19,7 @@ const categories = [
 ];
 
 const ContentManagement = () => {
-  const { role } = useRole();
+  const { role, roleLoading } = useRole();
   const [statusFilter, setStatusFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [search, setSearch] = useState("");
@@ -87,7 +88,10 @@ const ContentManagement = () => {
       </div>
 
       <div className="flex items-center justify-between mt-4 gap-12">
-        <form onSubmit={handleSearch} className="grid w-full sm:grid-cols-2 grid-cols-1 md:grid-cols-5 gap-3">
+        <form
+          onSubmit={handleSearch}
+          className="grid w-full sm:grid-cols-2 grid-cols-1 md:grid-cols-5 gap-3"
+        >
           <input
             type="text"
             placeholder="Search by title..."
@@ -147,14 +151,17 @@ const ContentManagement = () => {
                       size={30}
                       className="hover:text-white text-purple-600 cursor-pointer rounded-full p-1 hover:bg-purple-600"
                       onClick={() =>
-                        navigate(`/dashboard/content-management/update/${blog._id}`)
+                        // navigate(`/dashboard/content-management/update/${blog._id}`)
+                        toast.warning("This feature is not available yet")
                       }
                     />
-                    <MdDeleteForever
-                      size={30}
-                      className="hover:text-white text-primary rounded-full cursor-pointer p-1 hover:bg-primary"
-                      onClick={() => handleDelete(blog._id)}
-                    />
+                    {!roleLoading && role === "admin" && (
+                      <MdDeleteForever
+                        size={30}
+                        className="hover:text-white text-primary rounded-full cursor-pointer p-1 hover:bg-primary"
+                        onClick={() => handleDelete(blog._id)}
+                      />
+                    )}
                   </div>
                 )}
               </div>
@@ -166,7 +173,11 @@ const ContentManagement = () => {
                 />
                 <h2 className="mb-1 text-xl font-semibold">{blog.title}</h2>
                 <p className="text-sm dark:text-gray-600">
-                  <p dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 150)+"..." }}></p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: blog.content.slice(0, 150) + "...",
+                    }}
+                  ></p>
                 </p>
                 <div className="badge badge-secondary absolute text-base right-0 top-0 capitalize">
                   {blog.status}
@@ -196,6 +207,16 @@ const ContentManagement = () => {
                       Unpublish
                     </button>
                   ))}
+                {role === "volunteer" && blog.status === "published" && (
+                  <button
+                    className="btn flex-1 btn-warning"
+                    onClick={() =>
+                      statusMutation.mutate({ id: blog._id, status: "draft" })
+                    }
+                  >
+                    Unpublish
+                  </button>
+                )}
                 <Link
                   to={`/blogs/${blog._id}`}
                   className="btn flex-1 btn-outline"

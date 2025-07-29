@@ -80,7 +80,7 @@ const MyRequests = () => {
   const totalPages = Math.ceil((data?.total || 0) / limit);
 
   return (
-    <div className="p-4 bg-white rounded-xl shadow-md">
+    <div className="p-4 m-6 bg-white rounded-xl shadow-md">
       <h2 className="text-2xl font-semibold mb-4 text-neutral">
         My All Donation Requests
       </h2>

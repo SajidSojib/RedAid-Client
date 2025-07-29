@@ -13,7 +13,7 @@ const AdminRoute = ({ children }) => {
     );
   }
 
-  if (!user || role !== "admin") {
+  if (!user || (role !== "volunteer" && role !== "admin")) {
     return <Navigate state={location?.pathname} to="/forbidden"></Navigate>;
   }
 

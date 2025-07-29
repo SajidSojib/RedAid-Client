@@ -55,6 +55,7 @@ const Navbar = () => {
           });
       }
     });
+    setIsMenuOpen2(false);
   };
 
   const links = (
@@ -206,6 +207,7 @@ const Navbar = () => {
               <motion.ul initial={{ opacity: 0, y: -50 }} animate={isMenuOpen2 ? { opacity: 1, y: 0 } : { y: -50, opacity: 0 }} className="p-3 space-y-2 mt-2 shadow menu dropdown-content bg-base-100 border-2 border-primary rounded-box w-40 z-50">
                 <li>
                   <NavLink
+                    onClick={() => setIsMenuOpen2(false)}
                     className={({ isActive }) =>
                       isActive
                         ? "flex items-center gap-1 btn btn-primary"

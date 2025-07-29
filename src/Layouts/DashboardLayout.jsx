@@ -1,22 +1,21 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router";
+import { NavLink, Outlet, useNavigation } from "react-router";
 import {
   FaHome,
-  FaBox,
+  FaPlusCircle,
   FaListAlt,
-  FaHistory,
-  FaSearchLocation,
-  FaUserEdit,
-  FaUserPlus,
-  FaMotorcycle,
+  FaUsers,
+  FaTint,
+  FaEdit,
+  FaUserCircle,
 } from "react-icons/fa";
-import { FaCheckCircle, FaClock, FaUserShield } from "react-icons/fa";
 import CompanyLogo from "../Components/CompanyLogo";
 import useRole from "../Hooks/useRole";
 import CompanyLogo2 from "../Components/CompanyLogo2";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
+  const navigation = useNavigation();
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -51,7 +50,13 @@ const DashboardLayout = () => {
           </div>
           {/* Page content here */}
           <div className="">
-            <Outlet></Outlet>
+            {navigation.state === "loading" ? (
+              <div className="flex items-center justify-center h-screen">
+                <span className="loading loading-spinner loading-xl"></span>
+              </div>
+            ) : (
+              <Outlet></Outlet>
+            )}
           </div>
         </div>
         <div className="drawer-side">
@@ -80,75 +85,73 @@ const DashboardLayout = () => {
                 Dashboard Home
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/dashboard/create-donation-request"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 px-4 py-2 rounded text-base ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-200 hover:text-primary"
-                  }`
-                }
-              >
-                <FaBox />
-                Create Donation Request
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/my-donation-requests"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 px-4 py-2 rounded text-base ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-200 hover:text-primary"
-                  }`
-                }
-              >
-                <FaListAlt />
-                My Donation Requests
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/paymentHistory"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 px-4 py-2 rounded ${
-                    isActive ? "bg-primary text-black" : "hover:bg-base-200"
-                  }`
-                }
-              >
-                <FaHistory />
-                Payment History
-              </NavLink>
-            </li>
-            {!roleLoading && role === "admin" && (
+            {!roleLoading && role === "donor" && (
               <>
-                {" "}
                 <li>
                   <NavLink
-                    to="/dashboard/all-users"
+                    to="/dashboard/create-donation-request"
                     className={({ isActive }) =>
-                      `flex items-center gap-2 px-4 py-2 rounded ${
-                        isActive ? "bg-primary text-black" : "hover:bg-base-200"
+                      `flex items-center gap-2 px-4 py-2 rounded text-base ${
+                        isActive
+                          ? "bg-primary text-white"
+                          : "hover:bg-base-200 hover:text-primary"
                       }`
                     }
                   >
-                    <FaCheckCircle />
-                    All Users
+                    <FaPlusCircle />
+                    Create Donation Request
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    to="/dashboard/all-blood-donation-request"
+                    to="/dashboard/my-donation-requests"
                     className={({ isActive }) =>
-                      `flex items-center gap-2 px-4 py-2 rounded ${
-                        isActive ? "bg-primary text-black" : "hover:bg-base-200"
+                      `flex items-center gap-2 px-4 py-2 rounded text-base ${
+                        isActive
+                          ? "bg-primary text-white"
+                          : "hover:bg-base-200 hover:text-primary"
                       }`
                     }
                   >
-                    <FaClock />
+                    <FaListAlt />
+                    My Donation Requests
+                  </NavLink>
+                </li>
+              </>
+            )}
+
+            {!roleLoading && role === "admin" && (
+              <li>
+                <NavLink
+                  to="/dashboard/all-users"
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 py-2 rounded text-base ${
+                      isActive
+                        ? "bg-primary text-white"
+                        : "hover:bg-base-200 hover:text-primary"
+                    }`
+                  }
+                >
+                  <FaUsers />
+                  All Users
+                </NavLink>
+              </li>
+            )}
+
+            {!roleLoading && (role === "admin" || role === "volunteer") && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/all-blood-donation-request"
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 px-4 py-2 rounded text-base ${
+                        isActive
+                          ? "bg-primary text-white"
+                          : "hover:bg-base-200 hover:text-primary"
+                      }`
+                    }
+                  >
+                    <FaTint />
                     All Blood Donation Request
                   </NavLink>
                 </li>
@@ -156,28 +159,33 @@ const DashboardLayout = () => {
                   <NavLink
                     to="/dashboard/content-management"
                     className={({ isActive }) =>
-                      `flex items-center gap-2 px-4 py-2 rounded ${
-                        isActive ? "bg-primary text-black" : "hover:bg-base-200"
+                      `flex items-center gap-2 px-4 py-2 rounded text-base ${
+                        isActive
+                          ? "bg-primary text-white"
+                          : "hover:bg-base-200 hover:text-primary"
                       }`
                     }
                   >
-                    <FaClock />
+                    <FaEdit />
                     Content Management
                   </NavLink>
                 </li>
               </>
             )}
+
             <li>
               <NavLink
-                to="/dashboard/updateProfile"
+                to="/dashboard/profile"
                 className={({ isActive }) =>
-                  `flex items-center gap-2 px-4 py-2 rounded ${
-                    isActive ? "bg-primary text-black" : "hover:bg-base-200"
+                  `flex items-center gap-2 px-4 py-2 rounded text-base ${
+                    isActive
+                      ? "bg-primary text-white"
+                      : "hover:bg-base-200 hover:text-primary"
                   }`
                 }
               >
-                <FaUserEdit />
-                Update Profile
+                <FaUserCircle />
+                Profile
               </NavLink>
             </li>
           </ul>

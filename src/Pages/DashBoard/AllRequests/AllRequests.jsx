@@ -4,12 +4,14 @@ import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useRole from "../../../Hooks/useRole";
 
 const AllRequests = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const {role, roleLoading} = useRole();
 
   const [statusFilter, setStatusFilter] = useState("");
   const [page, setPage] = useState(1);
@@ -193,20 +195,24 @@ const AllRequests = () => {
                     >
                       View
                     </button>
-                    <button
-                      className="btn btn-xs btn-warning"
-                      onClick={() =>
-                        navigate(`/dashboard/edit-donation/${donation._id}`)
-                      }
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn btn-xs btn-outline btn-error"
-                      onClick={() => handleDelete(donation._id)}
-                    >
-                      Delete
-                    </button>
+                    {!roleLoading && role === "admin" && (
+                      <>
+                        <button
+                          className="btn btn-xs btn-warning"
+                          onClick={() =>
+                            navigate(`/dashboard/edit-donation/${donation._id}`)
+                          }
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="btn btn-xs btn-outline btn-error"
+                          onClick={() => handleDelete(donation._id)}
+                        >
+                          Delete
+                        </button>
+                      </>
+                    )}
                   </td>
                 </tr>
               ))

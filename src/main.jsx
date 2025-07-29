@@ -26,6 +26,7 @@ import AllUsers from './Pages/DashBoard/AllUsers/AllUsers';
 import AllRequests from './Pages/DashBoard/AllRequests/AllRequests';
 import ContentManagement from './Pages/DashBoard/ContentManagement/ContentManagement';
 import AddBlog from './Pages/DashBoard/ContentManagement/AddBlog';
+import Profile from './Pages/DashBoard/Profile/Profile';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "home",
         Component: DashboardHome,
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>,
       },
       {
         path: "create-donation-request",
