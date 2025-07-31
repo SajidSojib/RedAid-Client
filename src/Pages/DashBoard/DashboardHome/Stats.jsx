@@ -4,7 +4,6 @@ import { BiSolidDonateBlood } from 'react-icons/bi';
 import { FaTint } from 'react-icons/fa';
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 const Stats = ({role, data2: stats}) => {
-    console.log(stats);
     if(role === "donor"){
         return
     }
