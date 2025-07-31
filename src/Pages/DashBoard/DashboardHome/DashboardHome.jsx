@@ -6,6 +6,7 @@ import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import Stats from './Stats';
 import useRole from '../../../Hooks/useRole';
+import { Helmet } from 'react-helmet-async';
 
 const DashboardHome = () => {
   const axiosSecure = useAxiosSecure();
@@ -30,10 +31,13 @@ const DashboardHome = () => {
       enabled: !roleLoading && !!role && role !== "donor",
     });
   if (isLoading || roleLoading || isLoading2) {
-    return <progress className="progress w-56"></progress>
+    return <div className='flex items-center justify-center h-screen'><span className='loading loading-dots loading-xl'></span></div>
   }
     return (
       <div>
+        <Helmet>
+          <title>Dashboard | RedAid</title>
+        </Helmet>
         <Welcome user={data}></Welcome>
         <RecentDonations></RecentDonations>
         <Stats role={role} data2={data2}></Stats>

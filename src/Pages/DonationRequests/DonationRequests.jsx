@@ -1,7 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import useAuth from "../../hooks/useAuth";
-import { useState } from "react";
-import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 import {
   FaTint,
   FaMapMarkerAlt,
@@ -9,54 +6,37 @@ import {
   FaCalendarAlt,
   FaClock,
   FaCommentDots,
+  FaEnvelope,
 } from "react-icons/fa";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const DonationRequests = () => {
-  const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
-  const queryClient = useQueryClient();
-  const [selectedRequest, setSelectedRequest] = useState(null);
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   // Get all pending donation requests
   const { data: requests = [], isLoading } = useQuery({
     queryKey: ["donationRequests"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/donation-requests?status=pending");
+      const res = await axiosPublic.get("/all-donation?status=pending");
       return res.data.donations;
     },
   });
 
-  // Mutation to update request status to inprogress
-  const mutation = useMutation({
-    mutationFn: async ({ requestId, donorName, donorEmail }) => {
-      const res = await axiosSecure.patch(`/donation-requests/${requestId}`, {
-        status: "inprogress",
-        donorName,
-        donorEmail,
-      });
-      return res.data;
-    },
-    onSuccess: () => {
-      Swal.fire("Thank you!", "You have confirmed the donation.", "success");
-      queryClient.invalidateQueries(["donationRequests"]);
-      setSelectedRequest(null);
-    },
-  });
-
-  const handleConfirm = () => {
-    if (!selectedRequest) return;
-    mutation.mutate({
-      requestId: selectedRequest._id,
-      donorName: user?.displayName,
-      donorEmail: user?.email,
-    });
-  };
-
-  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <span className="loading loading-dots loading-xl"></span>
+      </div>
+    );
 
   return (
     <div className="pt-24">
+      <Helmet>
+        <title>Donation Requests | RedAid</title>
+      </Helmet>
       <div className="max-w-5xl mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-center">
           Blood Donation Requests
@@ -93,19 +73,16 @@ const DonationRequests = () => {
                   {request.donationTime}
                 </p>
                 <p className="flex items-center gap-2 text-sm">
-                  <FaCommentDots className="text-gray-600" />
-                  {request.message}
-                </p>
-                <p className="text-sm text-gray-600">
-                  Requested by: {request.requesterName}
+                  <FaEnvelope className="text-red-500" />
+                  {request.requesterEmail}
                 </p>
 
                 <div className="card-actions mt-4">
                   <button
                     className="btn btn-primary btn-sm"
-                    onClick={() => setSelectedRequest(request)}
+                    onClick={() => navigate(`/donation-request/${request._id}`)}
                   >
-                    Donate
+                    View Details
                   </button>
                 </div>
               </div>
@@ -114,7 +91,7 @@ const DonationRequests = () => {
         </div>
 
         {/* Confirm Modal */}
-        {selectedRequest && (
+        {/* {(selectedRequest && !loading) && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             <div className="bg-white rounded-xl p-6 w-[90%] max-w-md">
               <h3 className="text-xl font-semibold mb-4">Confirm Donation</h3>
@@ -153,7 +130,7 @@ const DonationRequests = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

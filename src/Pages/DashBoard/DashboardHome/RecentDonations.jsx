@@ -4,12 +4,21 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import useRole from '../../../Hooks/useRole';
 
 const RecentDonations = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const {role, roleLoading} = useRole();
+
+  // if (roleLoading) {
+  //   return <progress className="progress w-56"></progress>
+  // }
+  // if (role !== "donor") {
+  //   return null;
+  // }
 
   const { data: donations = [] } = useQuery({
     queryKey: ['recentDonations', user?.email],
@@ -17,7 +26,7 @@ const RecentDonations = () => {
       const res = await axiosSecure.get(`/donation-requests?email=${user?.email}&limit=3`);
       return res.data.donations;
     },
-    enabled: !!user?.email,
+    enabled: !!user?.email && !roleLoading && role === "donor",
   });
 
   const updateStatus = useMutation({
@@ -60,7 +69,9 @@ const RecentDonations = () => {
 
   return (
     <div className="p-4 m-6 bg-white rounded-xl shadow-md">
-      <h2 className="text-2xl font-semibold mb-4 text-neutral">Recent Donations</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-neutral">
+        Recent Donations
+      </h2>
       <div className="overflow-x-auto">
         <table className="table">
           <thead className="bg-primary text-primary-content">
@@ -79,32 +90,86 @@ const RecentDonations = () => {
             {donations.map((donation) => (
               <tr key={donation._id} className="hover">
                 <td>{donation.recipientName}</td>
-                <td>{donation.district}, {donation.upazila}</td>
+                <td>
+                  {donation.district}, {donation.upazila}
+                </td>
                 <td>{donation.donationDate}</td>
                 <td>{donation.donationTime}</td>
                 <td>{donation.bloodGroup}</td>
-                <td className={`capitalize font-medium ${
-                  donation.status === 'done' ? 'text-success' :
-                  donation.status === 'inprogress' ? 'text-info' :
-                  donation.status === 'canceled' ? 'text-error' : 'text-warning'}`}>{donation.status}</td>
+                <td
+                  className={`capitalize font-medium ${
+                    donation.status === "done"
+                      ? "text-success"
+                      : donation.status === "inprogress"
+                      ? "text-info"
+                      : donation.status === "canceled"
+                      ? "text-error"
+                      : "text-warning"
+                  }`}
+                >
+                  {donation.status}
+                </td>
                 <td>
-                  {donation.status.toLowerCase() === 'inprogress' && donation.donorName ? (
+                  {donation.status.toLowerCase() === "inprogress" &&
+                  donation.donorName ? (
                     <>
                       <p>{donation.donorName}</p>
-                      <p className="text-sm text-neutral-content">{donation.donorEmail}</p>
+                      <p className="text-sm text-neutral-content">
+                        {donation.donorEmail}
+                      </p>
                     </>
-                  ) : '—'}
+                  ) : (
+                    "—"
+                  )}
                 </td>
                 <td className="space-x-1">
-                  {donation.status.toLowerCase() === 'inprogress' && (
+                  {donation.status.toLowerCase() === "inprogress" && (
                     <>
-                      <button className="btn btn-xs btn-success" onClick={() => updateStatus.mutate({ id: donation._id, status: 'done' })}>Done</button>
-                      <button className="btn btn-xs btn-error" onClick={() => updateStatus.mutate({ id: donation._id, status: 'canceled' })}>Cancel</button>
+                      <button
+                        className="btn btn-xs btn-success"
+                        onClick={() =>
+                          updateStatus.mutate({
+                            id: donation._id,
+                            status: "done",
+                          })
+                        }
+                      >
+                        Done
+                      </button>
+                      <button
+                        className="btn btn-xs btn-error"
+                        onClick={() =>
+                          updateStatus.mutate({
+                            id: donation._id,
+                            status: "canceled",
+                          })
+                        }
+                      >
+                        Cancel
+                      </button>
                     </>
                   )}
-                  <button className="btn btn-xs btn-info" onClick={() => navigate(`/dashboard/donation-details/${donation._id}`)}>View</button>
-                  <button className="btn btn-xs btn-warning" onClick={() => navigate(`/dashboard/edit-donation/${donation._id}`)}>Edit</button>
-                  <button className="btn btn-xs btn-outline btn-error" onClick={() => handleDelete(donation._id)}>Delete</button>
+                  <button
+                    className="btn btn-xs btn-info"
+                    // need to be changed
+                    onClick={() => navigate(`/donation-request/${donation._id}`)}
+                  >
+                    View
+                  </button>
+                  <button
+                    className="btn btn-xs btn-warning"
+                    onClick={() =>
+                      navigate(`/dashboard/edit-donation/${donation._id}`)
+                    }
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-xs btn-outline btn-error"
+                    onClick={() => handleDelete(donation._id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
@@ -114,7 +179,7 @@ const RecentDonations = () => {
       <div className="text-right mt-4">
         <button
           className="btn bg-secondary text-secondary-content hover:bg-yellow-300"
-          onClick={() => navigate('/dashboard/my-donation-requests')}
+          onClick={() => navigate("/dashboard/my-donation-requests")}
         >
           View My All Requests
         </button>

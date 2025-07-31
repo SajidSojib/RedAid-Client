@@ -189,9 +189,7 @@ const AllRequests = () => {
                     )}
                     <button
                       className="btn btn-xs btn-info"
-                      onClick={() =>
-                        navigate(`/dashboard/donation-details/${donation._id}`)
-                      }
+                      onClick={() => navigate(`/donation-request/${donation._id}`)}
                     >
                       View
                     </button>

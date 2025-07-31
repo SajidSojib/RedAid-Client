@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import useRole from "../../../Hooks/useRole";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const categories = [
   "Donor Stories",
@@ -78,6 +79,9 @@ const ContentManagement = () => {
 
   return (
     <div className="p-4 space-y-6">
+      <Helmet>
+                <title>Content Management | RedAid</title>
+              </Helmet>
       <div>
         <h1 className="text-3xl font-bold text-center text-primary">
           Manage Blog Posts

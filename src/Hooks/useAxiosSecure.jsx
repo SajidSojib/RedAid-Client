@@ -5,16 +5,15 @@ import useAuth from './useAuth';
 import { useNavigate } from 'react-router';
 
 const axiosSecure = axios.create({
-  baseURL: "https://redaid-server.vercel.app",
-  // baseURL: "http://localhost:9000",
+  // baseURL: "https://redaid-server.vercel.app",
+  baseURL: "http://localhost:9000",
 });
 const useAxiosSecure = () => {
     const navigate = useNavigate();
     const { user, logOutUser } = useAuth();
-
     axiosSecure.interceptors.request.use(
-      (config) => {
-        const token = user?.accessToken;
+      async (config) => {
+        const token = await user?.getIdToken(true);
         if (token) {
           config.headers.authorization = `Bearer ${token}`;
         }

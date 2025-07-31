@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const MyRequests = () => {
   const { user } = useAuth();
@@ -81,6 +82,9 @@ const MyRequests = () => {
 
   return (
     <div className="p-4 m-6 bg-white rounded-xl shadow-md">
+      <Helmet>
+        <title>My Donation Requests | RedAid</title>
+      </Helmet>
       <h2 className="text-2xl font-semibold mb-4 text-neutral">
         My All Donation Requests
       </h2>
@@ -190,8 +194,9 @@ const MyRequests = () => {
                     )}
                     <button
                       className="btn btn-xs btn-info"
+                      // need to be changed
                       onClick={() =>
-                        navigate(`/dashboard/donation-details/${donation._id}`)
+                        navigate(`/donation-request/${donation._id}`)
                       }
                     >
                       View

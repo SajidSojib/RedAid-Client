@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
@@ -28,38 +29,37 @@ const CreateDonReq = () => {
   const selectedDivision = watch("division");
   const selectedDistrict = watch("district");
 
-//   const [filteredDistricts, setFilteredDistricts] = useState([]);
-//   const [filteredUpazilas, setFilteredUpazilas] = useState([]);
+  //   const [filteredDistricts, setFilteredDistricts] = useState([]);
+  //   const [filteredUpazilas, setFilteredUpazilas] = useState([]);
 
   useEffect(() => {
-      const loadLocations = async () => {
+    const loadLocations = async () => {
       setLoading(true);
 
-        const divisionData = await fetch("/division.json").then((res) =>
-          res.json()
-        );
-        const districtData = await fetch("/district.json").then((res) =>
-          res.json()
-        );
-        const upazilaData = await fetch("/upazila.json").then((res) =>
-          res.json()
-        );
-        setDivisions(divisionData);
-        setDistricts(districtData);
-        setUpazilas(upazilaData);
+      const divisionData = await fetch("/division.json").then((res) =>
+        res.json()
+      );
+      const districtData = await fetch("/district.json").then((res) =>
+        res.json()
+      );
+      const upazilaData = await fetch("/upazila.json").then((res) =>
+        res.json()
+      );
+      setDivisions(divisionData);
+      setDistricts(districtData);
+      setUpazilas(upazilaData);
       setLoading(false);
+    };
+    loadLocations();
+  }, []);
 
-      };
-      loadLocations();
-    }, []);
+  const filteredDistricts = districts.filter(
+    (d) => d.division_id === selectedDivision
+  );
 
-    const filteredDistricts = districts.filter(
-      (d) => d.division_id === selectedDivision
-    );
-
-    const filteredUpazilas = upazilas.filter(
-      (u) => u.district_id === selectedDistrict
-    );
+  const filteredUpazilas = upazilas.filter(
+    (u) => u.district_id === selectedDistrict
+  );
   // Get user status
   const { data: userData, isLoading } = useQuery({
     queryKey: ["userStatus", user?.email],
@@ -81,12 +81,8 @@ const CreateDonReq = () => {
       );
     }
 
-    const divisionName = divisions.find(
-      (d) => d.id === data.division
-    ).name;
-    const districtName = districts.find(
-      (d) => d.id === data.district
-    )?.name;
+    const divisionName = divisions.find((d) => d.id === data.division).name;
+    const districtName = districts.find((d) => d.id === data.district)?.name;
 
     const requestData = {
       ...data,
@@ -126,6 +122,9 @@ const CreateDonReq = () => {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-base-100 shadow-xl rounded-xl border border-base-300">
+      <Helmet>
+        <title>Create Donation Request | RedAid</title>
+      </Helmet>
       <h2 className="text-3xl font-bold mb-8 text-primary text-center">
         Create Donation Request
       </h2>

@@ -33,6 +33,25 @@ const Footer = () => {
         data-aos-once="true"
       >
         <NavLink
+          to={"/search-donor"}
+          aria-label="Donation Request"
+          title="Donation Request"
+          className={({ isActive }) =>
+            isActive
+              ? "px-2 block lg:p-0 font-medium tracking-wide transition-colors underline underline-offset-4 decoration-2 decoration-[#FF1A1A] text-white"
+              : "px-2 block lg:p-0 font-medium tracking-wide transition-colors duration-200"
+          }
+        >
+          Search Donor
+        </NavLink>
+      </li>
+      <li
+        data-aos="fade-down"
+        data-aos-duration="900"
+        data-aos-easing="ease-in-out"
+        data-aos-once="true"
+      >
+        <NavLink
           to={"/donation-request"}
           aria-label="Donation Request"
           title="Donation Request"
@@ -47,7 +66,7 @@ const Footer = () => {
       </li>
       <li
         data-aos="fade-down"
-        data-aos-duration="900"
+        data-aos-duration="1100"
         data-aos-easing="ease-in-out"
         data-aos-once="true"
       >
@@ -69,7 +88,7 @@ const Footer = () => {
         <>
           <li
             data-aos="fade-down"
-            data-aos-duration="1100"
+            data-aos-duration="1300"
             data-aos-easing="ease-in-out"
             data-aos-once="true"
           >
@@ -88,7 +107,7 @@ const Footer = () => {
           </li>
           <li
             data-aos="fade-down"
-            data-aos-duration="1300"
+            data-aos-duration="1500"
             data-aos-easing="ease-in-out"
             data-aos-once="true"
           >

@@ -33,6 +33,8 @@ import Blogs from './Pages/Blogs/Blogs';
 import BlogDetails from './Pages/Blogs/BlogDetails';
 import Funding from './Pages/Funding/Funding';
 import Error from './Pages/Error/Error';
+import { HelmetProvider } from "react-helmet-async";
+import DonationDetails from './Pages/DonationRequests/DonationDetails';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -63,7 +65,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'donation-request',
-        element: <PrivateRoute><DonationRequests></DonationRequests></PrivateRoute>
+        element: <DonationRequests></DonationRequests>
+      },
+      {
+        path: 'donation-request/:id',
+        element:<PrivateRoute><DonationDetails></DonationDetails></PrivateRoute>
       },
       {
         path: 'blogs',
@@ -142,11 +148,13 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <RouterProvider router={router} />
-        <ToastContainer />
-      </AuthProvider>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <RouterProvider router={router} />
+          <ToastContainer />
+        </AuthProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   </StrictMode>
 );

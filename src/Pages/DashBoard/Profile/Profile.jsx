@@ -16,6 +16,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { MdCancel } from "react-icons/md";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const fetchJSON = (url) => fetch(url).then((res) => res.json());
 
@@ -133,6 +134,9 @@ const Profile = () => {
 
   return (
     <div className="pt-28">
+      <Helmet>
+        <title>Profile | RedAid</title>
+      </Helmet>
       <div className="max-w-xl mx-auto p-6 bg-base-100 rounded shadow relative">
         <h2 className="text-2xl font-bold mb-4 text-center">My Profile</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
