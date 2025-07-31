@@ -30,7 +30,7 @@ const AuthProvider = ({children}) => {
         photoURL: photo,
       });
     };
-
+    const [token , setToken] = useState('');
     const userInfo = {
         user,
         setUser,
@@ -39,12 +39,17 @@ const AuthProvider = ({children}) => {
         createUser,
         logOutUser,
         signInUser,
-        updateUserData
+        updateUserData,
+        token
     }
 
     useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
         setUser(currentUser);
+        if (currentUser) {
+          const tk= await currentUser.getIdToken(true);
+          setToken(tk);
+        }
         setLoading(false);
       });
       return () => {
