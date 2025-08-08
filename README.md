@@ -29,7 +29,7 @@ RedAid is a **MERN stack-based blood donation platform** designed to seamlessly 
 
 ## 📸 Screenshot
 
-![RedAid Screenshot](https://i.ibb.co/yn7qGBjR/Fire-Shot-Capture-002-Home-Red-Aid-localhost.png)
+![RedAid Screenshot](./src/assets/webpage.png)
 
 ---
 
