@@ -8,7 +8,7 @@ const Footer = () => {
   const links = (
     <>
       <li
-        data-aos="fade-down"
+        data-aos="fade-done"
         data-aos-duration="500"
         data-aos-easing="ease-in-out"
         data-aos-once="true"
@@ -27,7 +27,7 @@ const Footer = () => {
         </NavLink>
       </li>
       <li
-        data-aos="fade-down"
+        data-aos="fade-done"
         data-aos-duration="700"
         data-aos-easing="ease-in-out"
         data-aos-once="true"
@@ -46,7 +46,7 @@ const Footer = () => {
         </NavLink>
       </li>
       <li
-        data-aos="fade-down"
+        data-aos="fade-done"
         data-aos-duration="900"
         data-aos-easing="ease-in-out"
         data-aos-once="true"
@@ -65,7 +65,7 @@ const Footer = () => {
         </NavLink>
       </li>
       <li
-        data-aos="fade-down"
+        data-aos="fade-done"
         data-aos-duration="1100"
         data-aos-easing="ease-in-out"
         data-aos-once="true"
@@ -87,7 +87,7 @@ const Footer = () => {
       {user && (
         <>
           <li
-            data-aos="fade-down"
+            data-aos="fade-done"
             data-aos-duration="1300"
             data-aos-easing="ease-in-out"
             data-aos-once="true"
@@ -106,7 +106,7 @@ const Footer = () => {
             </NavLink>
           </li>
           <li
-            data-aos="fade-down"
+            data-aos="fade-done"
             data-aos-duration="1500"
             data-aos-easing="ease-in-out"
             data-aos-once="true"

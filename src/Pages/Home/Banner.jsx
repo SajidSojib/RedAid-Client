@@ -54,7 +54,7 @@ const Banner = () => {
           </p>
           <div className="space-x-4">
            
-            <Link to="/search" className="btn btn-primary btn-wide text-white">
+            <Link to="/search-donor" className="btn btn-primary btn-wide text-white">
               Search Donors
             </Link>
           </div>
