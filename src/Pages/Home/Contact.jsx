@@ -7,10 +7,10 @@ const Contact = () => {
       <div className="py-16 mx-auto lg:py-20 lg:pt-18 rounded-2xl ">
         <section className="">
           <div className="max-w-xl mb-10 md:mx-auto text-center lg:max-w-2xl md:mb-12">
-            <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-base-content sm:text-4xl md:mx-auto">
+            <h2 className="max-w-lg mb-5 font-sans text-3xl font-bold leading-none tracking-tight text-base-content lg:text-4xl md:mx-auto">
               Need <span className="text-primary">Assistance?</span>?
             </h2>
-            <p className="text-base text-base-content md:text-lg">
+            <p className="text-base text-base-content/70 md:text-lg">
               Have questions, feedback, or need assistance? Reach out to our
               support team anytime—we’re here to help!
             </p>
@@ -30,10 +30,10 @@ const Contact = () => {
             >
               <div>
                 <h1 className="text-3xl font-bold">Get in touch</h1>
-                <p className="pt-2 pb-4">Fill in the form to connect with us</p>
+                <p className="pt-2 opacity-70 pb-4">Fill in the form to connect with us</p>
               </div>
               <label className="block">
-                <span className="mb-1 text-base-300">Full name</span>
+                <span className="mb-1">Full name</span>
                 <label
                   data-aos="fade-down"
                   data-aos-delay="100"
@@ -116,7 +116,7 @@ const Contact = () => {
                 data-aos-duration="1000"
                 data-aos-easing="ease-in-out"
                 type="submit"
-                className="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 btn btn-primary focus:dark:ring-violet-600 hover:dark:ring-violet-600"
+                className="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 btn btn-primary"
               >
                 Submit
               </button>

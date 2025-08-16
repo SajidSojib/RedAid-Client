@@ -33,15 +33,15 @@ const DonationRequests = () => {
     );
 
   return (
-    <div className="pt-24">
+    <div className="pt-20 ">
       <Helmet>
         <title>Donation Requests | RedAid</title>
       </Helmet>
-      <div className="max-w-5xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center">
+      <div className="px-4  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-8 ">
+        <h1 className="max-w-lg mb-3 font-sans text-3xl font-bold leading-none tracking-tight text-primary lg:text-4xl md:mx-auto text-center">
           Blood Donation Requests
         </h1>
-        <p className="text-center text-gray-500 mb-6">
+        <p className="text-base mb-14 text-center max-w-xl lg:max-w-2xl mx-auto text-base-content/70 md:text-lg">
           Find and help someone in need of blood today.
         </p>
 

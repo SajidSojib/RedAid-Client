@@ -80,11 +80,13 @@ const Search = () => {
       <Helmet>
         <title>Search Donor | RedAid</title>
       </Helmet>
-      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 ">
+      <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-8 ">
         {/* Title */}
         <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold text-primary">Search Donor</h2>
-          <p className="text-sm text-gray-500">
+          <h2 className="max-w-lg mb-4 font-sans text-3xl font-bold leading-none tracking-tight text-primary lg:text-4xl md:mx-auto">
+            Search Donor
+          </h2>
+          <p className="text-base mb-3 text-center max-w-xl lg:max-w-2xl mx-auto text-base-content/70 md:text-lg">
             Find eligible donors based on location and blood group
           </p>
         </div>
@@ -92,7 +94,7 @@ const Search = () => {
         {/* Search Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="grid grid-cols-1 md:grid-cols-4 gap-4"
+          className="grid grid-cols-1 md:grid-cols-4  gap-4"
         >
           {/* Division */}
           <select {...register("division")} className="select select-bordered">
@@ -171,11 +173,13 @@ const Search = () => {
                     />
                     <div>
                       <h4 className="font-bold text-primary">{user.name}</h4>
-                      <p className="text-xs text-gray-600">{user.email}</p>
+                      <p className="text-xs text-base-content/70">
+                        {user.email}
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div className="p-4 space-y-2 text-sm text-gray-700">
+                <div className="p-4 space-y-2 text-sm text-base-content/90">
                   <p className="flex items-center gap-2">
                     <FaTint className="text-red-500 w-4 h-4" />
                     <span className="font-medium">Blood Group:</span>{" "}

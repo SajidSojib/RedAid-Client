@@ -42,19 +42,19 @@ const Blogs = () => {
   };
 
   return (
-    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 ">
-      <div className="p-4 pt-14 space-y-6">
+    <div className="pt-20">
+      <div className="px-4  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-8 ">
         <div>
-          <h1 className="text-3xl font-bold text-center text-primary">
+          <h1 className="max-w-lg mb-3 font-sans text-3xl font-bold leading-none tracking-tight text-primary lg:text-4xl md:mx-auto text-center">
             Explore Inspiring Stories & Helpful Insights
           </h1>
-          <p className="text-gray-600 text-center">
+          <p className="text-base mb-3 text-center max-w-xl lg:max-w-2xl mx-auto text-base-content/70 md:text-lg">
             Discover real-life donor journeys, expert health tips, and the
             latest updates on blood donation and community impact.
           </p>
         </div>
 
-        <div className="flex items-center justify-between mt-4 gap-12">
+        <div className="flex mb-14 items-center justify-between mt-4 gap-12">
           <form
             onSubmit={handleSearch}
             className="grid w-full sm:grid-cols-2 grid-cols-1 md:grid-cols-4 gap-3"
