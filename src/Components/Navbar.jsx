@@ -265,7 +265,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-base-100 border-b-3 border-b-primary ">
+    <div className="bg-base-100 text-error border-b-3 border-b-primary ">
       <div className="px-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
         <div className="relative flex items-center justify-between">
           <div data-aos="fade-right" className="text-2xl">
