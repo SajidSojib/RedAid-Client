@@ -9,7 +9,7 @@ const MainLayout = () => {
 
     return (
       <div className="bg-base-300 overflow-x-hidden xl:overflow-visible min-h-screen">
-        <header className="fixed w-full z-50 top-5">
+        <header className="fixed w-full z-50">
           <Navbar></Navbar>
         </header>
 
