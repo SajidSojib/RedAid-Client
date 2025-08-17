@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
@@ -71,9 +71,11 @@ const CreateDonReq = () => {
   });
 
   const isBlocked = userData?.status.toLowerCase() === "blocked";
-
+  const [processing, setProcessing] = useState(false);
   const onSubmit = async (data) => {
+    setProcessing(true);
     if (isBlocked) {
+      setProcessing(false);
       return Swal.fire(
         "Blocked",
         "You are blocked from making requests.",
@@ -101,9 +103,11 @@ const CreateDonReq = () => {
           "Your blood donation request is submitted.",
           "success"
         );
+        setProcessing(false);
         reset();
       }
     } catch (err) {
+      setProcessing(false);
       Swal.fire(
         "Error",
         "Something went wrong. Please try again later.",
@@ -274,7 +278,14 @@ const CreateDonReq = () => {
           className="btn bg-primary text-white hover:bg-red-700 sm:col-span-2 xl:col-span-3"
           disabled={isBlocked}
         >
-          Request
+          {processing ? (
+            <span>
+              <span className="loading loading-spinner"></span>
+              <span>Processing</span>
+            </span>
+          ) : (
+            <span>Submit Request</span>
+          )}
         </button>
       </form>
     </div>

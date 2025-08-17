@@ -90,8 +90,12 @@ const EditDonation = () => {
     }
   }, [donation, setValue]);
 
+  const [processing, setProcessing] = useState(false);
+
   const onSubmit = async (data) => {
+    setProcessing(true);
     if (isBlocked) {
+      setProcessing(false);
       return Swal.fire(
         "Blocked",
         "You are blocked from editing requests.",
@@ -123,9 +127,11 @@ const EditDonation = () => {
           "Donation request updated successfully.",
           "success"
         );
+        setProcessing(false);
         navigate(-1); // change if route differs
       }
     } catch (err) {
+      setProcessing(false);
       Swal.fire("Error", "Could not update donation request.", "error");
     }
   };
@@ -139,7 +145,7 @@ const EditDonation = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-6 bg-base-100 shadow-xl rounded-xl border border-base-300">
+    <div className=" m-6 p-4 bg-base-100 shadow-xl rounded-xl border border-base-300">
       <h2 className="text-3xl font-bold mb-8 text-primary text-center">
         Edit Donation Request
       </h2>
@@ -161,7 +167,8 @@ const EditDonation = () => {
           </label>
           <input
             readOnly
-            defaultValue={user?.displayName}
+            // defaultValue={user?.displayName}
+            {...register("requesterName", { required: true })}
             className="input input-primary border-base-300 w-full"
             placeholder="Requester Name"
           />
@@ -174,7 +181,8 @@ const EditDonation = () => {
           </label>
           <input
             readOnly
-            defaultValue={user?.email}
+            // defaultValue={user?.email}
+            {...register("requesterEmail", { required: true })}
             className="input input-primary border-base-300 w-full"
             placeholder="Requester Email"
           />
@@ -331,7 +339,12 @@ const EditDonation = () => {
           className="btn bg-primary text-white hover:bg-red-700 sm:col-span-2"
           disabled={isBlocked}
         >
-          Update Request
+          {processing ? (
+            <span><span className="loading loading-spinner"></span><span>Updating</span></span>
+          )
+            : (
+              <span>Update Request</span>
+            )}
         </button>
       </form>
     </div>
