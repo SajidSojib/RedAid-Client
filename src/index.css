@@ -11,7 +11,7 @@
   --color-primary-content: #ffffff;      /* White – text on primary */
 
   --color-secondary: #FDE68A;            /* Soft Yellow – highlight/secondary sections */
-  --color-secondary-content: #1F2937;    /* Dark Gray – readable text on yellow */
+  --color-secondary-content: #F9FAFB;    /* Dark Gray – readable text on yellow */
 
   --color-accent: #E0E7FF;               /* Soft blue –  */
   --color-accent-content: #1E293B;       /* Navy – readable text on green */
@@ -35,7 +35,7 @@
     --color-primary: #fb2c36;
   --color-primary-content: #ffffff;
   --color-secondary: #f3f4f6;
-  --color-secondary-content: #4b5563;
+  --color-secondary-content: #333333;  /* dash bg */
   --color-accent: #d6e4f0;
   --color-accent-content: #1e3a8a;
   --color-base: #e8ebed;

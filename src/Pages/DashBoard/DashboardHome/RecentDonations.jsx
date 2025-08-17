@@ -68,8 +68,8 @@ const RecentDonations = () => {
   if (!donations.length) return null;
 
   return (
-    <div className="p-4 m-6 bg-white rounded-xl shadow-md">
-      <h2 className="text-2xl font-semibold mb-4 text-neutral">
+    <div className="p-4 m-6 bg-base-100 text-error rounded-xl shadow-md">
+      <h2 className="text-2xl font-semibold mb-4 text-error">
         Recent Donations
       </h2>
       <div className="overflow-x-auto">
@@ -178,7 +178,7 @@ const RecentDonations = () => {
       </div>
       <div className="text-right mt-4">
         <button
-          className="btn bg-secondary text-secondary-content hover:bg-yellow-300"
+          className="btn bg-green-600 hover:bg-green-700 text-black"
           onClick={() => navigate("/dashboard/my-donation-requests")}
         >
           View My All Requests

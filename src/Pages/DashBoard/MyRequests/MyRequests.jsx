@@ -81,11 +81,11 @@ const MyRequests = () => {
   const totalPages = Math.ceil((data?.total || 0) / limit);
 
   return (
-    <div className="p-4 m-6 bg-white rounded-xl shadow-md">
+    <div className="p-4 m-6 bg-base-100 rounded-xl shadow-md">
       <Helmet>
         <title>My Donation Requests | RedAid</title>
       </Helmet>
-      <h2 className="text-2xl font-semibold mb-4 text-neutral">
+      <h2 className="text-2xl font-semibold mb-4 text-error">
         My All Donation Requests
       </h2>
 
@@ -210,7 +210,7 @@ const MyRequests = () => {
                       Edit
                     </button>
                     <button
-                      className="btn btn-xs btn-outline btn-error"
+                      className="btn btn-xs bg-red-500 text-black"
                       onClick={() => handleDelete(donation._id)}
                     >
                       Delete

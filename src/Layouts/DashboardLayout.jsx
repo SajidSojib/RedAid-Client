@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigation } from "react-router";
 import {
   FaHome,
@@ -16,6 +16,13 @@ import CompanyLogo2 from "../Components/CompanyLogo2";
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
   const navigation = useNavigation();
+  const [theme, setTheme] = useState(() => {
+      return localStorage.getItem("theme") || "dark";
+    });
+    useEffect(() => {
+        document.body.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+      }, [theme]);
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -65,7 +72,7 @@ const DashboardLayout = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+          <ul className="menu bg-secondary-content text-base-content min-h-full w-80 p-4">
             {/* Sidebar content here */}
             <div className="border-b-4 border-primary mb-5 mt-5 text-4xl">
               <CompanyLogo></CompanyLogo>
