@@ -32,7 +32,7 @@ const Welcome = ({ user}) => {
             Welcome back, <span className="text-primary">{displayName}</span>!
           </h2>
           {userRole === "admin" && (
-            <p className="text-md text-base-content/70 text-justify mt-1 w-2/3">
+            <p className="text-md text-base-content/70 mx-auto md:mx-0 text-justify mt-1 md:w-2/3">
               Your role as an admin is vital in ensuring this life-saving
               ecosystem runs smoothly. From overseeing donations to empowering
               volunteers, your leadership shapes the impact we make every day.
@@ -40,7 +40,7 @@ const Welcome = ({ user}) => {
             </p>
           )}
           {userRole === "volunteer" && (
-            <p className="text-md text-base-content/70 text-justify mt-1 w-2/3">
+            <p className="text-md text-base-content/70 mx-auto md:mx-0  text-justify mt-1 md:w-2/3">
               Your role as a volunteer is a testament to your commitment to
               making a difference. As a volunteer, you play a pivotal role in
               making a positive impact on the lives of those in need. Your
@@ -48,7 +48,7 @@ const Welcome = ({ user}) => {
             </p>
           )}
           {userRole === "donor" && (
-            <p className="text-md text-base-content/70 text-justify mt-1 w-2/3">
+            <p className="text-md text-base-content/70 mx-auto md:mx-0 text-justify mt-1 md:w-2/3">
               We're honored to have you here again. Donating blood may take only
               a few minutes of your time, but its impact can last a lifetime.
               Your selflessness helps mothers in labor, accident victims, cancer

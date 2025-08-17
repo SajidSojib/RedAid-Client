@@ -121,7 +121,7 @@ const CreateDonReq = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-6 bg-base-100 shadow-xl rounded-xl border border-base-300">
+    <div className="m-6 p-4 bg-base-100 shadow-xl rounded-xl border border-base-300">
       <Helmet>
         <title>Create Donation Request | RedAid</title>
       </Helmet>
@@ -137,7 +137,7 @@ const CreateDonReq = () => {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+        className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"
       >
         <input
           readOnly
@@ -206,11 +206,18 @@ const CreateDonReq = () => {
 
         <input
           {...register("address", { required: true })}
-          className="input input-primary border-base-300 w-full"
+          className="input xl:col-span-2 input-primary border-base-300 w-full"
           placeholder="Full Address"
         />
 
-        <div className="flex flex-col md:col-span-2 gap-4 md:flex-row justify-between items-center">
+        <div className="flex flex-col sm:flex-row xl:flex-col sm:col-span-2 xl:col-span-1 gap-4 justify-between items-center">
+          <input
+            {...register("bags", { required: true })}
+            type="number"
+            min={1}
+            className="input input-primary border-base-300 w-full"
+            placeholder="Number of Blood Bags"
+          />
           <select
             {...register("bloodGroup", { required: true })}
             className="select select-primary border-base-300 w-full"
@@ -222,30 +229,49 @@ const CreateDonReq = () => {
               </option>
             ))}
           </select>
+        </div>
 
-          <input
+        <div className="flex flex-col md:col-span-2 xl:col-span-1 xl:flex-col gap-4 md:flex-row justify-between items-center">
+          <label className="input input-primary border-base-300 w-full">
+            <span className="label">Deadline date</span>
+            <input
+              {...register("donationDate", { required: true })}
+              type="date"
+            />
+          </label>
+
+          <label className="input input-primary border-base-300 w-full">
+            <span className="label">Deadline time</span>
+            <input
+              {...register("donationTime", { required: true })}
+              type="time"
+            />
+          </label>
+
+          {/* <input
             type="date"
             {...register("donationDate", { required: true })}
             className="input input-primary border-base-300 w-full"
-          />
+          /> */}
 
-          <input
+          {/* <input
             type="time"
             {...register("donationTime", { required: true })}
             className="input input-primary border-base-300 w-full"
-          />
+            placeholder="Deadline Time"
+          /> */}
         </div>
 
         <textarea
           {...register("message", { required: true })}
-          className="textarea textarea-primary border-base-300 w-full md:col-span-2"
+          className="textarea textarea-primary border-base-300 w-full md:col-span-2 xl:col-span-1"
           placeholder="Why do you need blood?"
           rows={4}
         ></textarea>
 
         <button
           type="submit"
-          className="btn bg-primary text-white hover:bg-red-700 sm:col-span-2"
+          className="btn bg-primary text-white hover:bg-red-700 sm:col-span-2 xl:col-span-3"
           disabled={isBlocked}
         >
           Request
