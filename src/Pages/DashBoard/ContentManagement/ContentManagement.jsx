@@ -86,7 +86,7 @@ const ContentManagement = () => {
         <h1 className="text-3xl font-bold text-center text-primary">
           Manage Blog Posts
         </h1>
-        <p className="text-gray-600 text-center">
+        <p className="text-base-content/80 text-center">
           Create, filter, publish and delete blogs
         </p>
       </div>
@@ -145,7 +145,7 @@ const ContentManagement = () => {
           {blogs.map((blog) => (
             <div
               key={blog._id}
-              className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-50 dark:text-gray-800"
+              className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-base-100 text-base-content"
             >
               <div className="flex items-center justify-between">
                 <h2 className="font-semibold text-2xl">{blog.category}</h2>
@@ -176,7 +176,7 @@ const ContentManagement = () => {
                   className="object-cover w-full mb-4 h-60 sm:h-96 dark:bg-gray-500"
                 />
                 <h2 className="mb-1 text-xl font-semibold">{blog.title}</h2>
-                <p className="text-sm dark:text-gray-600">
+                <p className="text-sm text-base-content/80">
                   <p
                     dangerouslySetInnerHTML={{
                       __html: blog.content.slice(0, 150) + "...",
@@ -223,7 +223,7 @@ const ContentManagement = () => {
                 )}
                 <Link
                   to={`/blogs/${blog._id}`}
-                  className="btn flex-1 btn-outline"
+                  className="btn flex-1 btn-primary"
                 >
                   View Details
                 </Link>

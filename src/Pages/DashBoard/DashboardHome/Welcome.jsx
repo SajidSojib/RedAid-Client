@@ -15,7 +15,7 @@ const Welcome = ({ user}) => {
   };
 
   const roleColor = {
-    admin: "badge-error",
+    admin: "badge-primary",
     volunteer: "badge-warning",
     donor: "badge-success",
   };

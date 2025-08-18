@@ -76,7 +76,7 @@ const AddBlog = () => {
   };
   
   return (
-    <div className="p-6 max-w-4xl mx-auto bg-white rounded shadow space-y-6">
+    <div className="p-6 m-6 bg-base-100 rounded-lg shadow space-y-6">
       <Helmet>
                 <title>Add Blog | RedAid</title>
               </Helmet>
@@ -135,6 +135,7 @@ const AddBlog = () => {
             ref={editor}
             value={content}
             onChange={(newContent) => setContent(newContent)}
+            
           />
         </div>
 
@@ -146,7 +147,7 @@ const AddBlog = () => {
               type="text"
               value={user?.displayName || ""}
               readOnly
-              className="input input-bordered w-full bg-gray-100"
+              className="input input-bordered w-full "
             />
           </div>
           <div>
@@ -155,7 +156,7 @@ const AddBlog = () => {
               type="email"
               value={user?.email || ""}
               readOnly
-              className="input input-bordered w-full bg-gray-100"
+              className="input input-bordered w-full"
             />
           </div>
         </div>

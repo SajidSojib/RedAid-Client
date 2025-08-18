@@ -79,8 +79,8 @@ const AllRequests = () => {
   const totalPages = Math.ceil((data?.total || 0) / limit);
 
   return (
-    <div className="p-4 bg-white rounded-xl shadow-md">
-      <h2 className="text-2xl font-semibold mb-4 text-neutral">
+    <div className="p-4 m-6 bg-base-100 rounded-xl shadow-md">
+      <h2 className="text-2xl font-semibold mb-4 text-primary">
         All Donation Requests
       </h2>
 
@@ -90,7 +90,7 @@ const AllRequests = () => {
           <button
             key={s}
             className={`btn btn-sm ${
-              statusFilter === s ? "btn-primary" : "btn-outline"
+              statusFilter === s ? "btn-primary" : "btn-outline btn-primary"
             }`}
             onClick={() => {
               setStatusFilter(s);
@@ -204,7 +204,7 @@ const AllRequests = () => {
                           Edit
                         </button>
                         <button
-                          className="btn btn-xs btn-outline btn-error"
+                          className="btn btn-xs btn-outline btn-primary"
                           onClick={() => handleDelete(donation._id)}
                         >
                           Delete
@@ -216,7 +216,7 @@ const AllRequests = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={8} className="text-center py-4">
+                <td colSpan={8} className="text-center text-primary py-4">
                   No donation requests found.
                 </td>
               </tr>
@@ -232,7 +232,7 @@ const AllRequests = () => {
             <button
               key={i}
               className={`btn btn-sm ${
-                i + 1 === page ? "btn-primary" : "btn-outline"
+                i + 1 === page ? "btn-primary" : "btn-outline btn-primary"
               }`}
               onClick={() => setPage(i + 1)}
             >

@@ -35,6 +35,7 @@ import Funding from './Pages/Funding/Funding';
 import Error from './Pages/Error/Error';
 import { HelmetProvider } from "@dr.pogodin/react-helmet";
 import DonationDetails from './Pages/DonationRequests/DonationDetails';
+import Overview from './Pages/DashBoard/Overview/Overview';
 
 AOS.init();
 const queryClient = new QueryClient();
@@ -60,29 +61,41 @@ const router = createBrowserRouter([
         Component: Forbidden,
       },
       {
-        path: 'search-donor',
-        Component: Search
+        path: "search-donor",
+        Component: Search,
       },
       {
-        path: 'donation-request',
-        element: <DonationRequests></DonationRequests>
+        path: "donation-request",
+        element: <DonationRequests></DonationRequests>,
       },
       {
-        path: 'donation-request/:id',
-        element:<PrivateRoute><DonationDetails></DonationDetails></PrivateRoute>
+        path: "donation-request/:id",
+        element: (
+          <PrivateRoute>
+            <DonationDetails></DonationDetails>
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'blogs',
-        Component:Blogs
+        path: "blogs",
+        Component: Blogs,
       },
       {
-        path: 'blogs/:id',
-        element:<PrivateRoute><BlogDetails></BlogDetails></PrivateRoute>
+        path: "blogs/:id",
+        element: (
+          <PrivateRoute>
+            <BlogDetails></BlogDetails>
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'funding',
-        element:<PrivateRoute><Funding></Funding></PrivateRoute>
-      }
+        path: "funding",
+        element: (
+          <PrivateRoute>
+            <Funding></Funding>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -131,18 +144,30 @@ const router = createBrowserRouter([
       },
       {
         path: "content-management",
-        element: <AdminRoute><ContentManagement></ContentManagement></AdminRoute>
+        element: (
+          <AdminRoute>
+            <ContentManagement></ContentManagement>
+          </AdminRoute>
+        ),
       },
       {
         path: "content-management/add-blog",
-        element: <AdminRoute><AddBlog></AddBlog></AdminRoute>
-      }
+        element: (
+          <AdminRoute>
+            <AddBlog></AddBlog>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "overview",
+        element: <AdminRoute><Overview></Overview></AdminRoute>
+      },
     ],
   },
   {
     path: "*",
-    Component: Error
-  }
+    Component: Error,
+  },
 ]);
 
 

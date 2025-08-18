@@ -59,8 +59,8 @@ const AllUsers = () => {
     return <div className='flex items-center justify-center h-screen'><span className='loading loading-dots loading-xl'></span></div>
   }
   return (
-    <div className="p-4 bg-white rounded-xl shadow">
-      <h2 className="text-2xl font-bold mb-4 text-neutral">All Users</h2>
+    <div className="p-4 m-6 bg-base-100 rounded-xl shadow">
+      <h2 className="text-2xl font-bold mb-4 text-primary">All Users</h2>
 
       {/* Filter Buttons */}
       <div className="flex gap-2 mb-4">

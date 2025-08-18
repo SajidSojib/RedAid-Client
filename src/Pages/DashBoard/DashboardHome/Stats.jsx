@@ -9,18 +9,18 @@ const Stats = ({role, data2: stats}) => {
     }
     return (
       <div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-          <div className="bg-base-100 p-4 rounded-xl shadow text-secondary-content">
+        <div className="grid grid-cols-1 p-4 m-4 sm:grid-cols-3 gap-4 text-center">
+          <div className="bg-base-100 p-4 rounded-xl shadow text-primary">
             <FaTint className="text-3xl mb-2 mx-auto" color="red" />
             <h3 className="text-lg font-semibold">Total Users</h3>
             <p className="text-2xl font-bold">
               <CountUp end={stats?.totalUsers || 0} duration={1.5} />
             </p>
           </div>
-          <div className="bg-base-100 p-4 rounded-xl shadow text-accent-content">
+          <div className="bg-base-100 p-4 rounded-xl shadow text-blue-400">
             <BiSolidDonateBlood
               className="text-3xl mb-2 mx-auto"
-              color="blue"
+              color="skyblue"
             />
             <h3 className="text-lg font-semibold">Total Donation Requests</h3>
             <p className="text-xl font-bold">

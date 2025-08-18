@@ -8,6 +8,7 @@ import {
   FaTint,
   FaEdit,
   FaUserCircle,
+  FaChartPie,
 } from "react-icons/fa";
 import CompanyLogo from "../Components/CompanyLogo";
 import useRole from "../Hooks/useRole";
@@ -128,21 +129,38 @@ const DashboardLayout = () => {
             )}
 
             {!roleLoading && role === "admin" && (
-              <li>
-                <NavLink
-                  to="/dashboard/all-users"
-                  className={({ isActive }) =>
-                    `flex items-center gap-2 px-4 py-2 rounded text-base ${
-                      isActive
-                        ? "bg-primary text-white"
-                        : "hover:bg-base-200 hover:text-primary"
-                    }`
-                  }
-                >
-                  <FaUsers />
-                  All Users
-                </NavLink>
-              </li>
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/all-users"
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 px-4 py-2 rounded text-base ${
+                        isActive
+                          ? "bg-primary text-white"
+                          : "hover:bg-base-200 hover:text-primary"
+                      }`
+                    }
+                  >
+                    <FaUsers />
+                    All Users
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/overview"
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 px-4 py-2 rounded text-base ${
+                        isActive
+                          ? "bg-primary text-white"
+                          : "hover:bg-base-200 hover:text-primary"
+                      }`
+                    }
+                  >
+                    <FaChartPie />
+                    Overview
+                  </NavLink>
+                </li>
+              </>
             )}
 
             {!roleLoading && (role === "admin" || role === "volunteer") && (
