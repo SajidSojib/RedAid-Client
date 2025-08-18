@@ -1,0 +1,22 @@
+[
+  {
+    "question": "What is RedAid?",
+    "answer": "RedAid is a blood donation platform that connects blood donors with recipients in need. It offers role-based dashboards, secure donations, and community-driven content to make blood donation easier and more accessible."
+  },
+  {
+    "question": "How do I register as a donor?",
+    "answer": "You can register by signing up with your email using Firebase Authentication. Once logged in, you’ll get access to your donor dashboard where you can create and manage donation requests."
+  },
+  {
+    "question": "How are donations processed?",
+    "answer": "All donations are securely processed using Stripe, ensuring a safe and reliable transaction experience."
+  },
+  {
+    "question": "What roles exist in RedAid?",
+    "answer": "There are three main roles: Admin, Volunteer, and Donor. Admins manage users, requests, and content. Volunteers update donation request statuses. Donors can register, create requests, and track their donations."
+  },
+  {
+    "question": "How can I contribute to the community?",
+    "answer": "Besides donating blood, you can also engage with community content through our blog system, where admins and volunteers share donor stories, health tips, and awareness resources."
+  }
+]

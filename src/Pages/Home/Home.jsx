@@ -6,11 +6,13 @@ import { Helmet } from "@dr.pogodin/react-helmet";
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import RecentReq from './RecentReq';
 import Partners from './Partners';
+import Faq from './Faq';
 
 const Home = () => {
   const axiosPublic = useAxiosPublic();
   const [data, setData] = useState([]);
   const [partnerData, setPartnerData] = useState([]);
+  const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,6 +24,9 @@ const Home = () => {
     fetch('/partner.json').then(res => res.json())
       .then(data => setPartnerData(data))
       setLoading(false);
+
+    fetch('/faq.json').then(res => res.json())
+      .then(data => setQuestions(data))
   }, []);
 
     if (loading) {
@@ -40,6 +45,7 @@ const Home = () => {
         <RecentReq data={data}></RecentReq>
         <Feature></Feature>
         <Partners partnerData={partnerData}></Partners>
+        <Faq questions={questions}></Faq>
         <Contact></Contact>
       </div>
     );
