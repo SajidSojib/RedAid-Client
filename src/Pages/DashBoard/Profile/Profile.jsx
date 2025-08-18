@@ -16,7 +16,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { MdCancel } from "react-icons/md";
 import { FaRegCalendarAlt } from "react-icons/fa";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const fetchJSON = (url) => fetch(url).then((res) => res.json());
 

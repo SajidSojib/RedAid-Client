@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "bKash",
+    "logo": "https://logo.clearbit.com/bkash.com",
+    "description": "bKash enables secure mobile payments for services listed on our platform, making transactions smooth and accessible.",
+    "website": "https://www.bkash.com",
+    "category": "Mobile Payment"
+  },
+  {
+    "id": 2,
+    "name": "Nagad",
+    "logo": "https://logo.clearbit.com/nagad.com.bd",
+    "description": "Nagad partners with us to offer instant digital payment solutions, helping users pay or receive money with ease.",
+    "website": "https://www.nagad.com.bd",
+    "category": "Digital Wallet"
+  },
+  {
+    "id": 3,
+    "name": "Pathao",
+    "logo": "https://logo.clearbit.com/pathao.com",
+    "description": "Pathao supports our platform by offering fast delivery and ride-sharing options for service providers and clients alike.",
+    "website": "https://www.pathao.com",
+    "category": "Logistics & Ride Sharing"
+  },
+  {
+    "id": 4,
+    "name": "Shohoz",
+    "logo": "https://logo.clearbit.com/shohoz.com",
+    "description": "Shohoz collaborates with us to help users book tickets and services for events or experiences they discover through TrueReview.",
+    "website": "https://www.shohoz.com",
+    "category": "Ticketing & Travel"
+  },
+  {
+    "id": 5,
+    "name": "Daraz",
+    "logo": "https://logo.clearbit.com/daraz.com.bd",
+    "description": "Daraz brings eCommerce power to our ecosystem by offering verified sellers and product-based service integrations.",
+    "website": "https://www.daraz.com.bd",
+    "category": "E-commerce"
+  },
+  {
+    "id": 6,
+    "name": "Sheba.xyz",
+    "logo": "https://logo.clearbit.com/sheba.xyz",
+    "description": "Sheba.xyz connects TrueReview users with local service professionals, from cleaning to appliance repair and more.",
+    "website": "https://www.sheba.xyz",
+    "category": "Home Services"
+  },
+  {
+    "id": 7,
+    "name": "Chaldal",
+    "logo": "https://logo.clearbit.com/chaldal.com",
+    "description": "Chaldal helps us enable fast delivery of daily essentials through trusted logistics and vendor partnerships.",
+    "website": "https://www.chaldal.com",
+    "category": "Grocery Delivery"
+  },
+  {
+    "id": 8,
+    "name": "AjkerDeal",
+    "logo": "https://logo.clearbit.com/ajkerdeal.com",
+    "description": "AjkerDeal supports our platform by providing a broad range of Bangladeshi local products and seller services.",
+    "website": "https://www.ajkerdeal.com",
+    "category": "Online Marketplace"
+  }
+]

@@ -6,7 +6,7 @@ import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import Stats from './Stats';
 import useRole from '../../../Hooks/useRole';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const DashboardHome = () => {
   const axiosSecure = useAxiosSecure();

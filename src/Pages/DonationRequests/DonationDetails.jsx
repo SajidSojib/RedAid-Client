@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const DonationDetails = () => {
   const { id } = useParams();

@@ -9,7 +9,7 @@ import {
   FaClock,
 } from "react-icons/fa";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const Search = () => {
   const axiosPublic = useAxiosPublic();

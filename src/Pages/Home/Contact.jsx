@@ -4,7 +4,7 @@ import Lottie from "lottie-react";
 import contactLottie from "../../assets/contact-lottie.json";
 const Contact = () => {
     return (
-      <div className="py-16 mx-auto lg:py-20 lg:pt-18 rounded-2xl ">
+      <div className="py-16 mx-auto lg:py-24 rounded-2xl ">
         <section className="">
           <div className="max-w-xl mb-10 md:mx-auto text-center lg:max-w-2xl md:mb-12">
             <h2 className="max-w-lg mb-5 font-sans text-3xl font-bold leading-none tracking-tight text-base-content lg:text-4xl md:mx-auto">

@@ -33,7 +33,7 @@ import Blogs from './Pages/Blogs/Blogs';
 import BlogDetails from './Pages/Blogs/BlogDetails';
 import Funding from './Pages/Funding/Funding';
 import Error from './Pages/Error/Error';
-import { HelmetProvider } from "react-helmet-async";
+import { HelmetProvider } from "@dr.pogodin/react-helmet";
 import DonationDetails from './Pages/DonationRequests/DonationDetails';
 
 AOS.init();
