@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
-  FaTint,
-  FaMapMarkerAlt,
-  FaHospital,
+  FaTint,  
   FaCalendarAlt,
-  FaClock,
   FaBriefcaseMedical,
-  FaEnvelope,
 } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
