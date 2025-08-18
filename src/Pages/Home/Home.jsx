@@ -9,6 +9,7 @@ import Partners from './Partners';
 import Faq from './Faq';
 import RecentBlogs from './RecentBlogs';
 import axios from 'axios';
+import Testimonials from './Testimonials';
 
 const Home = () => {
   const axiosPublic = useAxiosPublic();
@@ -54,6 +55,7 @@ const Home = () => {
         <RecentBlogs blogs={blogs}></RecentBlogs>
         <Feature></Feature>
         <Partners partnerData={partnerData}></Partners>
+        <Testimonials></Testimonials>
         <Faq questions={questions}></Faq>
         <Contact></Contact>
       </div>
