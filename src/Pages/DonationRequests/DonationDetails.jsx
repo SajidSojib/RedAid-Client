@@ -91,20 +91,22 @@ const DonationDetails = () => {
     );
 
   return (
-    <div className="pt-24">
+    <div className="pt-20">
       <Helmet>
         <title>Donation Details | RedAid</title>
       </Helmet>
-      <div className="max-w-5xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center"></h1>
-        <p className="text-center text-gray-500 mb-6"></p>
+      <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-8 ">
+        {/* <h1 className="text-3xl font-bold text-center"></h1> */}
+        {/* <p className="text-center text-gray-500 mb-6"></p> */}
 
-        <div className="max-w-4xl mx-auto px-4 py-10">
-          <h2 className="text-3xl font-bold mb-6 text-primary">
-            Blood Donation Request Details
-          </h2>
+        {/* <div className="max-w-4xl mx-auto px-4 py-10"> */}
+        <h2 className="max-w-lg mb-6 text-3xl font-bold leading-none tracking-tight text-primary lg:text-4xl md:mx-auto text-center">
+          Blood Donation Request Details
+        </h2>
 
-          <div className="bg-white shadow-md rounded-lg p-6 space-y-4 border border-base-300">
+        <div className="bg-base-100 shadow-md rounded-lg p-6 flex flex-col md:flex-row justify-between border border-base-300">
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold">Recipient Details</h3>
             <div className="flex items-center gap-2 text-lg">
               <FaUser className="text-primary" />
               <span>
@@ -118,7 +120,12 @@ const DonationDetails = () => {
                 <strong>Blood Group:</strong> {request.bloodGroup}
               </span>
             </div>
-
+            <div className="flex items-center gap-2 text-lg">
+              <FaTint className="text-red-600" />
+              <span>
+                <strong>Quantity:</strong> {request.bags} Bags
+              </span>
+            </div>
             <div className="flex items-center gap-2 text-lg">
               <FaMapMarkerAlt className="text-blue-500" />
               <span>
@@ -126,6 +133,10 @@ const DonationDetails = () => {
                 , {request.division}
               </span>
             </div>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold">Adress & Deadline</h3>
 
             <div className="flex items-center gap-2 text-lg">
               <FaHospital className="text-green-500" />
@@ -144,20 +155,19 @@ const DonationDetails = () => {
             <div className="flex items-center gap-2 text-lg">
               <FaCalendarAlt className="text-orange-500" />
               <span>
-                <strong>Date:</strong> {request.donationDate}
+                <strong>Deadline Date:</strong> {request.donationDate}
               </span>
             </div>
-
             <div className="flex items-center gap-2 text-lg">
               <FaClock className="text-purple-500" />
               <span>
-                <strong>Time:</strong> {request.donationTime}
+                <strong>Deadline Time:</strong> {request.donationTime}
               </span>
             </div>
+          </div>
 
-            <div className="text-lg">
-              <strong>Message:</strong> {request.message}
-            </div>
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold">Requester Details</h3>
 
             <div className="flex items-center gap-2 text-lg">
               <FaEnvelope className="text-gray-500" />
@@ -168,66 +178,79 @@ const DonationDetails = () => {
             </div>
 
             <div className="text-lg">
+              <strong>Message:</strong> {request.message}
+            </div>
+
+            <div className="flex items-center gap-2 text-lg">
+              <FaCalendarAlt className="text-green-500" />
+              <span>
+                <strong>Requested On:</strong> {request.createdAt.slice(0, 10)}{" "}
+                at {request.createdAt.slice(11, 16)}
+              </span>
+            </div>
+
+            <div className="text-lg">
               <strong>Status:</strong>{" "}
               <span className="capitalize badge badge-info">
                 {request.status}
               </span>
             </div>
           </div>
-
-          <div className="mt-6 text-center">
-            <button
-              onClick={() => setSelectedRequest(request)}
-              className="btn btn-primary px-8"
-            >
-              Donate
-            </button>
-          </div>
         </div>
 
-        {/* Confirm Modal */}
-        {selectedRequest && !loading && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white rounded-xl p-6 w-[90%] max-w-md">
-              <h3 className="text-xl font-semibold mb-4">Confirm Donation</h3>
-              <div className="space-y-4">
-                <div>
-                  <label className="label-text text-sm">Donor Name</label>
-                  <input
-                    readOnly
-                    value={user?.displayName || ""}
-                    className="input input-bordered w-full"
-                  />
-                </div>
-                <div>
-                  <label className="label-text text-sm">Donor Email</label>
-                  <input
-                    readOnly
-                    value={user?.email || ""}
-                    className="input input-bordered w-full"
-                  />
-                </div>
-                <div className="flex justify-end gap-2 mt-4">
-                  <button
-                    className="btn btn-outline"
-                    onClick={() => setSelectedRequest(null)}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    className="btn btn-primary"
-                    onClick={handleConfirm}
-                    disabled={mutation.isPending}
-                  >
-                    {mutation.isPending ? "Confirming..." : "Confirm"}
-                  </button>
-                </div>
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => setSelectedRequest(request)}
+            className="btn btn-primary px-8"
+          >
+            Donate
+          </button>
+        </div>
+      </div>
+
+      {/* Confirm Modal */}
+      {selectedRequest && !loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-base-200 rounded-xl p-6 w-[90%] max-w-md">
+            <h3 className="text-xl font-semibold mb-4">Confirm Donation</h3>
+            <div className="space-y-4">
+              <div>
+                <label className="label-text text-sm">Donor Name</label>
+                <input
+                  readOnly
+                  value={user?.displayName || ""}
+                  className="input input-bordered w-full"
+                />
+              </div>
+              <div>
+                <label className="label-text text-sm">Donor Email</label>
+                <input
+                  readOnly
+                  value={user?.email || ""}
+                  className="input input-bordered w-full"
+                />
+              </div>
+              <div className="flex justify-end gap-2 mt-4">
+                <button
+                  className="btn btn-outline border-none hover:bg-base-100/70 bg-base-100"
+                  onClick={() => setSelectedRequest(null)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="btn btn-primary"
+                  onClick={handleConfirm}
+                  disabled={mutation.isPending}
+                >
+                  {mutation.isPending ? "Confirming..." : "Confirm"}
+                </button>
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
+    // </div>
   );
 };
 

@@ -116,25 +116,18 @@ const DonationRequests = () => {
                   {request.recipientName} needs {request.bloodGroup} blood
                 </h2>
                 <p className="flex items-center gap-2 text-sm">
-                  <FaMapMarkerAlt className="text-blue-500" />
-                  {request.upazila}, {request.district}, {request.division}
-                </p>
-                <p className="flex items-center gap-2 text-sm">
-                  <FaHospital className="text-green-500" />
-                  {request.hospitalName}
+                  <FaBriefcaseMedical className="text-red-500" />
+                  Quantity: {request.bags} Bags
                 </p>
                 <p className="flex items-center gap-2 text-sm">
                   <FaCalendarAlt className="text-orange-500" />
-                  {request.donationDate}
+                  Requsted On: {request.createdAt.slice(0, 10)} at{" "}
+                  {request.createdAt.slice(11, 16)}
                 </p>
-                <p className="flex items-center gap-2 text-sm">
+                {/* <p className="flex items-center gap-2 text-sm">
                   <FaClock className="text-purple-500" />
-                  {request.donationTime}
-                </p>
-                <p className="flex items-center gap-2 text-sm">
-                  <FaBriefcaseMedical className="text-red-500" />
-                  {request.bags}
-                </p>
+                  Deadline Time: {request.donationTime}
+                </p> */}
 
                 <div className="card-actions mt-4">
                   <button
