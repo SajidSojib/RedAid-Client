@@ -93,7 +93,7 @@ const Blogs = () => {
             {blogs.map((blog) => (
               <div
                 key={blog._id}
-                className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-50 dark:text-gray-800"
+                className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-base-100 text-base-content"
               >
                 <div className="flex items-center justify-between">
                   <h2 className="font-semibold text-2xl">{blog.category}</h2>
@@ -102,7 +102,7 @@ const Blogs = () => {
                   <img
                     src={blog.thumbnail}
                     alt=""
-                    className="object-cover w-full mb-4 h-60 sm:h-96 dark:bg-gray-500"
+                    className="object-cover w-full mb-4 h-56 dark:bg-gray-500"
                   />
                   <h2 className="mb-1 text-xl font-semibold">{blog.title}</h2>
                   <p className="text-sm dark:text-gray-600">
@@ -112,14 +112,14 @@ const Blogs = () => {
                       }}
                     ></p>
                   </p>
-                  <div className="badge badge-secondary absolute text-base right-0 top-0 capitalize">
+                  <div className="badge badge-secondary absolute text-base text-black bg-yellow-500 border-none  right-0 top-0 capitalize">
                     {blog.status}
                   </div>
                 </div>
                 <div className="flex items-center gap-5 justify-between">
                   <Link
                     to={`/blogs/${blog._id}`}
-                    className="btn flex-1 btn-outline"
+                    className="btn flex-1 btn-outline btn-primary"
                   >
                     View Details
                   </Link>
