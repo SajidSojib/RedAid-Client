@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { MdCancel } from "react-icons/md";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegCalendarAlt, FaUserCircle } from "react-icons/fa";
 import { Helmet } from "@dr.pogodin/react-helmet";
 
 const fetchJSON = (url) => fetch(url).then((res) => res.json());
@@ -133,12 +133,50 @@ const Profile = () => {
   }
 
   return (
-    <div className="pt-28">
+    <div className="">
       <Helmet>
         <title>Profile | RedAid</title>
       </Helmet>
+      <div className="overflow-hidden  flex flex-col md:flex-row justify-center items-center gap-14 md:gap-20 text-center pt-16 pb-28">
+        {userData.avatar ? (
+          <img
+            data-aos="fade-right"
+            className="w-50 h-50 md:w-60 md:h-60 object-cover rounded-full"
+            src={userData.avatar}
+            alt=""
+          />
+        ) : (
+          <FaUserCircle className="w-50 h-50 md:w-60 md:h-60 object-cover rounded-full text-primary" />
+        )}
+
+        <div data-aos="fade-left" className="space-y-4">
+          <p className="text-lg text-primary">Profile Details</p>
+          <p className="text-4xl text-base-content font-bold cinzel">
+            {userData.name}
+          </p>
+          <p className="text-lg sm:text-xl text-base-content font-semibold">
+            {userData.email}
+          </p>
+          <p className="text-lg sm:text-xl text-base-content font-semibold">
+            Location: {userData.upazila}, {userData.district}, {userData.division}
+          </p>
+      
+
+          <div className="mt-8 flex justify-center gap-4 items-center">
+            <button className="flex items-center gap-2 btn bg-white rounded-4xl border-2 border-primary text-primary">
+              <span>Role: </span>
+              <span>{userData.role ? userData.role : "N/A"}</span>
+            </button>
+            <button className="flex items-center gap-2 btn bg-primary rounded-4xl border-2 border-primary text-white">
+              <span>Blood Group: </span>
+              <span>{userData.bloodGroup ? userData.bloodGroup : "N/A"}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-xl mx-auto p-6 bg-base-100 rounded shadow relative">
-        <h2 className="text-2xl font-bold mb-4 text-center">My Profile</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Edit Profile</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Email (readonly) */}
           <label className="input input-bordered w-full flex items-center gap-2">
